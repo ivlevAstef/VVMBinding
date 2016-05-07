@@ -10,12 +10,16 @@
 #import <objc/runtime.h>
 #import <libkern/OSAtomic.h>
 
-static volatile int32_t isExecuted = FALSE;
+static volatile int32_t isObserved = FALSE;
 
+static char sVVMKVObserverAssocoationKey = 0;
 
 @interface VVMKVObserver ()
 
-@property (nonatomic, unsafe_unretained) VVMBind* bind;
+@property (nonatomic, unsafe_unretained) id observeObject;
+@property (nonatomic, copy) id observeKeyPath;
+
+@property (nonatomic, weak) VVMBind* bind;
 
 @end
 
@@ -31,32 +35,39 @@ static volatile int32_t isExecuted = FALSE;
     self = [super init];
     if (self) {
         self.bind = bind;
+        self.observeObject = self.bind.obj;
+        self.observeKeyPath = self.bind.keyPath;
         
-        [self.bind.obj addObserver:self forKeyPath:self.bind.keyPath options:NSKeyValueObservingOptionNew context:nil];
-        objc_setAssociatedObject(self.bind, (__bridge const void *)(self), self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [self.observeObject addObserver:self forKeyPath:self.observeKeyPath options:NSKeyValueObservingOptionNew context:nil];
+        objc_setAssociatedObject(self.bind, &sVVMKVObserverAssocoationKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     return self;
 }
 
 - (void)dealloc {
-    [self.bind.obj removeObserver:self forKeyPath:self.bind.keyPath];
-    self.bind = nil;
+    [self.observeObject removeObserver:self forKeyPath:self.observeKeyPath];
+    self.observeObject = nil;
 }
 
 - (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context {
-    if (!OSAtomicCompareAndSwap32(FALSE, TRUE, &isExecuted)) {
+    __strong typeof(self.bind) bind = self.bind;
+    if (nil == bind) {
+        return;
+    }
+    
+    if (!OSAtomicCompareAndSwap32(FALSE, TRUE, &isObserved)) {
         return;
     }
     
     id newValue = [change objectForKey:NSKeyValueChangeNewKey];
     
-    if ([self.bind check:newValue]) {
-        newValue = [self.bind modification:newValue];
-        [self.bind update:newValue];
+    if ([bind check:newValue]) {
+        newValue = [bind modification:newValue];
+        [bind update:newValue];
     }
     
-    isExecuted = FALSE;
+    isObserved = FALSE;
 }
 
 @end

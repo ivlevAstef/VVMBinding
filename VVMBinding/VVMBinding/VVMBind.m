@@ -9,13 +9,17 @@
 #import "VVMBind.h"
 #import <objc/runtime.h>
 
+static char sVVMBindAssocoationKey = 0;
+
 @interface VVMBind ()
 
-@property (nonatomic, unsafe_unretained) id obj;
+@property (nonatomic, weak) id obj;
 @property (nonatomic, copy) NSString* keyPath;
 
 @property (nonatomic, weak) id callObj;
 @property (nonatomic, copy) NSString* callKeyPath;
+
+@property (nonatomic, assign) NSMutableSet* associations;
 
 @end
 
@@ -35,14 +39,29 @@
         self.callObj = callObj;
         self.callKeyPath = callKeyPath;
         
-        objc_setAssociatedObject(self.obj, (__bridge const void *)(self), self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [self bindRetain];
     }
     
     return self;
 }
 
-- (void)dealloc {
-    self.obj = nil;
+- (void)setAssociations:(NSMutableSet*)associations {
+    objc_setAssociatedObject(self.obj, &sVVMBindAssocoationKey, associations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSMutableSet*)associations {
+    return objc_getAssociatedObject(self.obj, &sVVMBindAssocoationKey) ?: [NSMutableSet set];
+}
+
+- (void)bindRetain {
+    NSMutableSet* associations = [self associations];
+    [associations addObject:self];
+    [self setAssociations:associations];
+}
+
+- (void)bindRelease {
+    NSMutableSet* associations = [self associations];
+    [associations removeObject:self];
 }
 
 - (NSString*)selectorName {
@@ -122,6 +141,7 @@
         [invocation invoke];
     }
 }
+
 - (BOOL)check:(id)newValue {
     __strong typeof(self.callObj) callObj = self.callObj;
     if (nil == callObj) {

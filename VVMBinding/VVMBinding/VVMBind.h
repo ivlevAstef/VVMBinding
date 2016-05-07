@@ -12,7 +12,7 @@
 
 + (instancetype)createFor:(id)obj withKeyPath:(NSString*)keyPath withCallObj:(id)callObj withKeyPath:(NSString*)callKeyPath;
 
-@property (nonatomic, readonly) id obj;
+@property (nonatomic, readonly, weak) id obj;
 @property (nonatomic, readonly) NSString* keyPath;
 
 @property (nonatomic, readonly, weak) id callObj;
