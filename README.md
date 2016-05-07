@@ -1,5 +1,6 @@
+
 # VVMBinding
-Support MVVM binding
+Data and MVVM binding for iOS
 
 ## Acknowledgements
 
