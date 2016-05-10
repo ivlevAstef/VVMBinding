@@ -14,8 +14,8 @@ typedef void (^VVMBindMethodUpdated)(BOOL success, id newValue);
 
 @protocol IVVMBind <NSObject>
 
-@property (atomic, copy) VVMBindMethodCheck checkBlock;
-@property (atomic, copy) VVMBindMethodTransformation transformationBlock;
-@property (atomic, copy) VVMBindMethodUpdated updatedBlock;
+- (void)check:(VVMBindMethodCheck)checkBlock;
+- (void)transformation:(VVMBindMethodTransformation)transformationBlock;
+- (void)updated:(VVMBindMethodUpdated)updatedBlock;
 
 @end

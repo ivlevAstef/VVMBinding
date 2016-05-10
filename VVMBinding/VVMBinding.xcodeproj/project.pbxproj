@@ -11,6 +11,9 @@
 		A5FF94A51CDC5D4F00A23401 /* VVMBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94A41CDC5D4F00A23401 /* VVMBinding.m */; };
 		A5FF94D71CDDBD6B00A23401 /* VVMBind.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94D61CDDBD6B00A23401 /* VVMBind.m */; };
 		A5FF94DA1CDDC6D200A23401 /* VVMKVObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94D91CDDC6D200A23401 /* VVMKVObserver.m */; };
+		A5FF94DF1CE1B63B00A23401 /* VVMBindPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94DE1CE1B63B00A23401 /* VVMBindPath.m */; };
+		A5FF94E01CE1BDFB00A23401 /* IVVMBind.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5FF94DC1CE1AB3800A23401 /* IVVMBind.h */; };
+		A5FF94E31CE1C56F00A23401 /* VVMBindBase.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94E21CE1C56F00A23401 /* VVMBindBase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -20,6 +23,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				A5FF94E01CE1BDFB00A23401 /* IVVMBind.h in CopyFiles */,
 				A5FF94A31CDC5D4F00A23401 /* VVMBinding.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,6 +39,10 @@
 		A5FF94D81CDDC6D200A23401 /* VVMKVObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMKVObserver.h; sourceTree = "<group>"; };
 		A5FF94D91CDDC6D200A23401 /* VVMKVObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMKVObserver.m; sourceTree = "<group>"; };
 		A5FF94DC1CE1AB3800A23401 /* IVVMBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVVMBind.h; sourceTree = "<group>"; };
+		A5FF94DD1CE1B63B00A23401 /* VVMBindPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMBindPath.h; sourceTree = "<group>"; };
+		A5FF94DE1CE1B63B00A23401 /* VVMBindPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMBindPath.m; sourceTree = "<group>"; };
+		A5FF94E11CE1C56F00A23401 /* VVMBindBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMBindBase.h; sourceTree = "<group>"; };
+		A5FF94E21CE1C56F00A23401 /* VVMBindBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMBindBase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +75,11 @@
 		A5FF94A11CDC5D4F00A23401 /* VVMBinding */ = {
 			isa = PBXGroup;
 			children = (
+				A5FF94DD1CE1B63B00A23401 /* VVMBindPath.h */,
+				A5FF94DE1CE1B63B00A23401 /* VVMBindPath.m */,
 				A5FF94DC1CE1AB3800A23401 /* IVVMBind.h */,
+				A5FF94E11CE1C56F00A23401 /* VVMBindBase.h */,
+				A5FF94E21CE1C56F00A23401 /* VVMBindBase.m */,
 				A5FF94D51CDDBD6B00A23401 /* VVMBind.h */,
 				A5FF94D61CDDBD6B00A23401 /* VVMBind.m */,
 				A5FF94D81CDDC6D200A23401 /* VVMKVObserver.h */,
@@ -134,9 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FF94E31CE1C56F00A23401 /* VVMBindBase.m in Sources */,
 				A5FF94DA1CDDC6D200A23401 /* VVMKVObserver.m in Sources */,
 				A5FF94D71CDDBD6B00A23401 /* VVMBind.m in Sources */,
 				A5FF94A51CDC5D4F00A23401 /* VVMBinding.m in Sources */,
+				A5FF94DF1CE1B63B00A23401 /* VVMBindPath.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

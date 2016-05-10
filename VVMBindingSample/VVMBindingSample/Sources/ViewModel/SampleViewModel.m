@@ -7,6 +7,7 @@
 //
 
 #import "SampleViewModel.h"
+#import "VVMBinding/VVMBinding.h"
 
 @implementation SampleViewModel
 
@@ -34,6 +35,8 @@
                             ];
         
         [self runAutoUpdate];
+        
+        [self bindMethods];
     }
     
     return self;
@@ -44,39 +47,32 @@
         self.staticText = @"Sample Static Text Update By Time";
     });
 }
-/*
 
-- (BOOL)VVMIsChangeEditableTextTo:(id)NewValue {
-    NSLog(@"Editable Text is Changed with value:%@", NewValue);
-    return TRUE;
+
+- (void)bindMethods {
+    [VVMBindObj(self, editableText) check:^BOOL (id newValue) {
+        NSLog(@"Editable Text is Changed with value:%@", newValue);
+        return TRUE;
+    }];
+    
+    [VVMBindObj(self, editableText) transformation:^id(id newValue) {
+        NSLog(@"Editable Text Transformation with value:%@", newValue);
+        return [newValue lowercaseString];
+    }];
+    
+    [VVMBindObj(self, editableText) updated:^void(BOOL success, id newValue) {
+        NSLog(@"Editable Text Changed:%@ %@", newValue, success ? @"success" : @"failed");
+    }];
+    
+    [VVMBindObj(self, dynamicValue) updated:^void(BOOL success, id newValue) {
+        NSLog(@"Dynamic value Changed:%@ %@", newValue, success ? @"success" : @"failed");
+    }];
+    
+    
+    [VVMBindObj(self, booleanValue) updated:^void(BOOL success, id newValue) {
+        NSLog(@"Boolean value Changed:%@ %@", newValue, success ? @"success" : @"failed");
+    }];
+
 }
-
-
-- (id)VVMModificationEditableText:(id)NewValue {
-    NSLog(@"Editable Text Modification from:%@", NewValue);
-    return [NewValue lowercaseString];
-}
-
-- (void)VVMMChangedEditableTextTo:(id)NewValue {
-    NSLog(@"Editable Text Changed:%@", NewValue);
-}
-
-- (void)VVMMIsChangeDynamicValueTo:(id)NewValue {
-    NSLog(@"Dynamic Value Changed:%@", NewValue);
-}
-
-- (id)VVMModificationDynamicValue:(id)NewValue {
-    NSLog(@"Dynamic Value Modification from:%@", NewValue);
-    return NewValue;
-}
-
-- (void)VVMMChangedDynamicValueTo:(id)NewValue {
-    NSLog(@"Dynamic Value Changed:%@", NewValue);
-}
-
-- (void)VVMMChangedBooleanValueTo:(id)NewValue {
-    NSLog(@"Boolean Value Changed:%@", NewValue);
-}
-*/
 
 @end

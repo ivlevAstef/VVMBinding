@@ -9,79 +9,40 @@
 #import "VVMBind.h"
 #import <objc/runtime.h>
 
-static char sVVMBindAssocoationKey = 0;
-
 @interface VVMBind ()
 
-@property (nonatomic, weak) id obj;
-@property (nonatomic, copy) NSString* keyPath;
-
-@property (nonatomic, weak) id callObj;
-@property (nonatomic, copy) NSString* callKeyPath;
-
-@property (nonatomic, assign) NSMutableSet* associations;
+@property (nonatomic, strong) VVMBindPath* callPath;
 
 @end
 
 @implementation VVMBind
-@synthesize checkBlock;
-@synthesize transformationBlock;
-@synthesize updatedBlock;
 
-+ (instancetype)createFor:(id)obj withKeyPath:(NSString*)keyPath withCallObj:(id)callObj withKeyPath:(NSString*)callKeyPath initial:(BOOL)initial {
-    return [[self alloc] initFor:obj withKeyPath:keyPath withCallObj:callObj withKeyPath:callKeyPath initial:initial];
++ (instancetype)createByPath:(VVMBindPath*)path withCallPath:(VVMBindPath*)callPath {
+    return [[self alloc] initByPath:path withCallPath:callPath];
 }
 
-- (id)initFor:(id)obj withKeyPath:(NSString*)keyPath withCallObj:(id)callObj withKeyPath:(NSString*)callKeyPath initial:(BOOL)initial {
-    assert(nil != obj && nil != keyPath && nil != callObj && nil != callKeyPath);
-    
-    self = [super init];
+- (id)initByPath:(VVMBindPath*)path withCallPath:(VVMBindPath*)callPath{
+    self = [super initByPath:path];
     if (self) {
-        self.obj = obj;
-        self.keyPath = keyPath;
-        self.callObj = callObj;
-        self.callKeyPath = callKeyPath;
-        
-        [self bindRetain];
-        
-        if (initial) {
-            [self initial];
-        }
+        self.callPath = callPath;
     }
     
     return self;
 }
 
-- (void)setAssociations:(NSMutableSet*)associations {
-    objc_setAssociatedObject(self.obj, &sVVMBindAssocoationKey, associations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSMutableSet*)associations {
-    return objc_getAssociatedObject(self.obj, &sVVMBindAssocoationKey) ?: [NSMutableSet set];
-}
-
-- (void)bindRetain {
-    NSMutableSet* associations = [self associations];
-    [associations addObject:self];
-    [self setAssociations:associations];
-}
-
-- (void)bindRelease {
-    NSMutableSet* associations = [self associations];
-    [associations removeObject:self];
-}
-
 - (void)initial {
     @try {
-        id value = [self.obj valueForKeyPath:self.keyPath];
-        [self update:value];
+        id value = [self.path.parent valueForKeyPath:self.path.keyPath];
+        if ([self checkPackage:value]) {
+            value = [self transformationPackage:value];
+            [self updatePackage:value];
+        }
     } @catch(...) {
     }
 }
 
-
-- (BOOL)check:(id)newValue {
-    __strong typeof(self.callObj) callObj = self.callObj;
+- (BOOL)checkPackage:(id)newValue {
+    __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
     if (nil == callObj) {
         return FALSE;
     }
@@ -94,8 +55,8 @@ static char sVVMBindAssocoationKey = 0;
     return userMethod(newValue);
 }
 
-- (id)transformation:(id)newValue {
-    __strong typeof(self.callObj) callObj = self.callObj;
+- (id)transformationPackage:(id)newValue {
+    __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
     if (nil == callObj) {
         return newValue;
     }
@@ -108,8 +69,8 @@ static char sVVMBindAssocoationKey = 0;
     return userMethod(newValue);
 }
 
-- (void)update:(id)newValue {
-    __strong typeof(self.callObj) callObj = self.callObj;
+- (void)updatePackage:(id)newValue {
+    __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
     if (nil == callObj) {
         return;
     }
@@ -118,7 +79,7 @@ static char sVVMBindAssocoationKey = 0;
     BOOL successful = TRUE;
     
     @try {
-        [self.callObj setValue:newValue forKeyPath:self.callKeyPath];
+        [callObj setValue:newValue forKeyPath:self.callPath.keyPath];
     } @catch (...) {
         successful = FALSE;
     }
@@ -127,6 +88,5 @@ static char sVVMBindAssocoationKey = 0;
         userMethod(successful, newValue);
     }
 }
-
 
 @end

@@ -7,20 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IVVMBind.h"
+#import "VVMBindBase.h"
+#import "VVMBindPath.h"
 
-@interface VVMBind : NSObject<IVVMBind>
+@interface VVMBind : VVMBindBase
 
-+ (instancetype)createFor:(id)obj withKeyPath:(NSString*)keyPath withCallObj:(id)callObj withKeyPath:(NSString*)callKeyPath initial:(BOOL)initial;
++ (instancetype)createByPath:(VVMBindPath*)path withCallPath:(VVMBindPath*)callPath;
 
-@property (nonatomic, readonly, weak) id obj;
-@property (nonatomic, readonly) NSString* keyPath;
+- (void)initial;
 
-@property (nonatomic, readonly, weak) id callObj;
-@property (nonatomic, readonly) NSString* callKeyPath;
+@property (nonatomic, readonly) VVMBindPath* callPath;
 
-- (BOOL)check:(id)newValue;
-- (id)transformation:(id)newValue;
-- (void)update:(id)newValue;
+@property (nonatomic, strong) id observer;
+
+- (BOOL)checkPackage:(id)newValue;
+- (id)transformationPackage:(id)newValue;
+- (void)updatePackage:(id)newValue;
 
 @end

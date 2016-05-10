@@ -12,8 +12,6 @@
 
 static volatile int32_t isObserved = FALSE;
 
-static char sVVMKVObserverAssocoationKey = 0;
-
 @interface VVMKVObserver ()
 
 @property (nonatomic, unsafe_unretained) id observeObject;
@@ -35,11 +33,12 @@ static char sVVMKVObserverAssocoationKey = 0;
     self = [super init];
     if (self) {
         self.bind = bind;
-        self.observeObject = self.bind.obj;
-        self.observeKeyPath = self.bind.keyPath;
+        
+        self.observeObject = self.bind.path.parent;
+        self.observeKeyPath = self.bind.path.keyPath;
         
         [self.observeObject addObserver:self forKeyPath:self.observeKeyPath options:NSKeyValueObservingOptionNew context:nil];
-        objc_setAssociatedObject(self.bind, &sVVMKVObserverAssocoationKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        self.bind.observer = self;
     }
     
     return self;
@@ -62,9 +61,9 @@ static char sVVMKVObserverAssocoationKey = 0;
     
     id newValue = [change objectForKey:NSKeyValueChangeNewKey];
     
-    if ([bind check:newValue]) {
-        newValue = [bind transformation:newValue];
-        [bind update:newValue];
+    if ([bind checkPackage:newValue]) {
+        newValue = [bind transformationPackage:newValue];
+        [bind updatePackage:newValue];
     }
     
     isObserved = FALSE;

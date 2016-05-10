@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IVVMBind.h"
 
 typedef NS_ENUM(NSUInteger, eVVMBindingDirection) {
     eVVMBindingDirection_To = 1 << 0,
@@ -20,18 +21,11 @@ typedef NS_ENUM(NSUInteger, eVVMBindingInitial) {
     eVVMBindingInitial_From,
 };
 
-/**
- *  Called Methods:
- *  - (BOOL)VVMIsChange@KeyPath@To:(id)NewValue;
- *  - (id)VVMModification@KeyPath@:(id)NewValue;
- *  - (void)VVMMChanged@KeyPath@To:(id)NewValue;
- *  - (void)VVMMNotChanges@KeyPath@To:(id)NewValue;
- *
- *  Where @KeyPath@ Construct from keyPath value by algorithm: someName.value -> SomeNameValue
- */
 @interface VVMBinding : NSObject
 
 + (void)bind:(id)parent keyPath:(NSString*)keyPath direction:(eVVMBindingDirection)direction initial:(eVVMBindingInitial)initial with:(id)parent2 keyPath:(NSString*)keyPath2;
+
++ (id<IVVMBind>)bindObject:(id)parent keyPath:(NSString*)keyPath;
 
 @end
 
@@ -40,4 +34,9 @@ do { \
     typeof(PARENT.OBJ) __attribute__((unused)) check = PARENT.OBJ; \
     typeof(PARENT2.OBJ2) __attribute__((unused)) check2 = PARENT2.OBJ2; \
     [VVMBinding bind:PARENT keyPath:@#OBJ direction:eVVMBindingDirection_##DIRECTION initial:eVVMBindingInitial_##INITIAL with:PARENT2 keyPath:@#OBJ2]; \
-} while(0);
+} while(0)
+
+#define VVMBindObj(PARENT, OBJ) ({ \
+    typeof(PARENT.OBJ) __attribute__((unused)) check = PARENT.OBJ; \
+    [VVMBinding bindObject:PARENT keyPath:@#OBJ]; \
+})
