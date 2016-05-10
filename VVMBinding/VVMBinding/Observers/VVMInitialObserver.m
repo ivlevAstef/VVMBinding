@@ -29,10 +29,7 @@
         return;
     }
     
-    if ([bind observerCheck:value]) {
-        value = [bind observerTransformation:value];
-        [bind observerUpdate:value];
-    }
+    [bind observerExecute:value];
 }
 
 @end

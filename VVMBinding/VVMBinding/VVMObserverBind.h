@@ -15,8 +15,6 @@
 
 @property (nonatomic, strong) id observer;
 
-- (BOOL)observerCheck:(id)newValue;
-- (id)observerTransformation:(id)newValue;
-- (void)observerUpdate:(id)newValue;
+- (void)observerExecute:(id)newValue;
 
 @end

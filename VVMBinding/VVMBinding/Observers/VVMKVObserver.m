@@ -55,11 +55,7 @@ static volatile int32_t isObserved = FALSE;
     }
     
     id newValue = [change objectForKey:NSKeyValueChangeNewKey];
-    
-    if ([bind observerCheck:newValue]) {
-        newValue = [bind observerTransformation:newValue];
-        [bind observerUpdate:newValue];
-    }
+    [bind observerExecute:newValue];
     
     isObserved = FALSE;
 }

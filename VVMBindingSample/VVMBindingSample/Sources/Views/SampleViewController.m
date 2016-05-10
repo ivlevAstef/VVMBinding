@@ -59,7 +59,7 @@
     
     VVMBind(self, sampleLabel.text, From, From, viewModel, staticText);
     VVMBind(self, sampleTextField.text, Both, From, viewModel, editableText);
-    VVMBind(self, sampleTextField.placeholder, Both, From, viewModel, editableTextPlaceholder);
+    VVMBind(self, sampleTextField.placeholder, From, From, viewModel, editableTextPlaceholder);
     
     //VVMBind(self, sampleSlider.minimumValue, Both, From, viewModel, dynamicValueMin);
     //VVMBind(self, sampleSlider.maximumValue, Both, From, viewModel, dynamicValueMax);

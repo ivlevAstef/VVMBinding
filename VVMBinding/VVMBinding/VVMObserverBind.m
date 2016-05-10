@@ -31,11 +31,6 @@
 }
 
 - (BOOL)observerCheck:(id)newValue {
-    __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
-    if (nil == callObj) {
-        return FALSE;
-    }
-    
     VVMBindMethodCheck userMethod = self.checkBlock;
     if (nil == userMethod) {
         return TRUE;
@@ -45,11 +40,6 @@
 }
 
 - (id)observerTransformation:(id)newValue {
-    __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
-    if (nil == callObj) {
-        return newValue;
-    }
-    
     VVMBindMethodTransformation userMethod = self.transformationBlock;
     if (nil == userMethod) {
         return newValue;
@@ -58,12 +48,7 @@
     return userMethod(newValue);
 }
 
-- (void)observerUpdate:(id)newValue {
-    __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
-    if (nil == callObj) {
-        return;
-    }
-    
+- (void)observerUpdate:(id)newValue On:(id)callObj {
     VVMBindMethodUpdated userMethod = self.updatedBlock;
     BOOL successful = TRUE;
     
@@ -75,6 +60,18 @@
     
     if (nil != userMethod) {
         userMethod(successful, newValue);
+    }
+}
+
+- (void)observerExecute:(id)newValue {
+    __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
+    if (nil == callObj) {
+        return;
+    }
+    
+    if ([self observerCheck:newValue]) {
+        newValue = [self observerTransformation:newValue];
+        [self observerUpdate:newValue On:callObj];
     }
 }
 

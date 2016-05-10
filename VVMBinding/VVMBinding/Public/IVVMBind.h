@@ -12,6 +12,8 @@ typedef BOOL (^VVMBindMethodCheck)(id newValue);
 typedef id (^VVMBindMethodTransformation)(id newValue);
 typedef void (^VVMBindMethodUpdated)(BOOL success, id newValue);
 
+typedef void (^VVMBindMethodReceivedCommand)();
+
 @protocol IVVMBind <NSObject>
 
 - (void)check:(VVMBindMethodCheck)checkBlock;
