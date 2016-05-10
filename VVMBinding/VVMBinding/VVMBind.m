@@ -24,12 +24,15 @@ static char sVVMBindAssocoationKey = 0;
 @end
 
 @implementation VVMBind
+@synthesize checkBlock;
+@synthesize transformationBlock;
+@synthesize updatedBlock;
 
-+ (instancetype)createFor:(id)obj withKeyPath:(NSString*)keyPath withCallObj:(id)callObj withKeyPath:(NSString*)callKeyPath {
-    return [[self alloc] initFor:obj withKeyPath:keyPath withCallObj:callObj withKeyPath:callKeyPath];
++ (instancetype)createFor:(id)obj withKeyPath:(NSString*)keyPath withCallObj:(id)callObj withKeyPath:(NSString*)callKeyPath initial:(BOOL)initial {
+    return [[self alloc] initFor:obj withKeyPath:keyPath withCallObj:callObj withKeyPath:callKeyPath initial:initial];
 }
 
-- (id)initFor:(id)obj withKeyPath:(NSString*)keyPath withCallObj:(id)callObj withKeyPath:(NSString*)callKeyPath {
+- (id)initFor:(id)obj withKeyPath:(NSString*)keyPath withCallObj:(id)callObj withKeyPath:(NSString*)callKeyPath initial:(BOOL)initial {
     assert(nil != obj && nil != keyPath && nil != callObj && nil != callKeyPath);
     
     self = [super init];
@@ -40,6 +43,10 @@ static char sVVMBindAssocoationKey = 0;
         self.callKeyPath = callKeyPath;
         
         [self bindRetain];
+        
+        if (initial) {
+            [self initial];
+        }
     }
     
     return self;
@@ -64,83 +71,14 @@ static char sVVMBindAssocoationKey = 0;
     [associations removeObject:self];
 }
 
-- (NSString*)selectorName {
-    NSCharacterSet* separators = [NSCharacterSet characterSetWithCharactersInString:@". "];
-    NSArray<NSString*>* substrings = [self.callKeyPath componentsSeparatedByCharactersInSet:separators];
-    
-    NSString* result = @"";
-    for (NSString* substr in substrings) {
-        NSString* upperCaseStr = [NSString stringWithFormat:@"%@%@",[[substr substringToIndex:1] uppercaseString],[substr substringFromIndex:1]];
-        result = [result stringByAppendingString:upperCaseStr];
-    }
-    
-    return result;
-}
-
-- (NSInvocation*)createInvocation:(id)obj WithSelector:(SEL)selector {
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[[obj class] instanceMethodSignatureForSelector:selector]];
-    
-    [invocation setSelector:selector];
-    [invocation setTarget:obj];
-    
-    return invocation;
-}
-
-- (BOOL)checkAndCallMethodIsChangeOn:(id)callObj WithObj:(id)obj {
-    SEL selector = NSSelectorFromString([NSString stringWithFormat:@"VVMIsChange%@To:", [self selectorName]]);
-    
-    if ([callObj respondsToSelector:selector]) {
-        NSInvocation *invocation = [self createInvocation:callObj WithSelector:selector];
-        [invocation setArgument:&obj atIndex:2];
-        
-        [invocation invoke];
-        
-        BOOL result = FALSE;
-        [invocation getReturnValue:&result];
-        return result;
-    }
-    
-    return TRUE;
-}
-
-- (id)checkAndCallMethodModificationOn:(id)callObj WithObj:(id)obj {
-    SEL selector = NSSelectorFromString([NSString stringWithFormat:@"VVMModification%@:", [self selectorName]]);
-    
-    if ([callObj respondsToSelector:selector]) {
-        NSInvocation *invocation = [self createInvocation:callObj WithSelector:selector];
-        [invocation setArgument:&obj atIndex:2];
-        
-        [invocation invoke];
-        
-        void* result = nil;
-        [invocation getReturnValue:&result];
-        return (__bridge id)(result);
-    }
-    
-    return obj;
-}
-
-- (void)checkAndCallMethodChanged:(id)callObj WithObj:(id)obj {
-    SEL selector = NSSelectorFromString([NSString stringWithFormat:@"VVMMChanged%@To:", [self selectorName]]);
-    
-    if ([callObj respondsToSelector:selector]) {
-        NSInvocation *invocation = [self createInvocation:callObj WithSelector:selector];
-        [invocation setArgument:&obj atIndex:2];
-        
-        [invocation invoke];
+- (void)initial {
+    @try {
+        id value = [self.obj valueForKeyPath:self.keyPath];
+        [self update:value];
+    } @catch(...) {
     }
 }
 
-- (void)checkAndCallMethodDidNotChanged:(id)callObj WithObj:(id)obj {
-    SEL selector = NSSelectorFromString([NSString stringWithFormat:@"VVMMNotChanges%@To:", [self selectorName]]);
-    
-    if ([callObj respondsToSelector:selector]) {
-        NSInvocation *invocation = [self createInvocation:callObj WithSelector:selector];
-        [invocation setArgument:&obj atIndex:2];
-        
-        [invocation invoke];
-    }
-}
 
 - (BOOL)check:(id)newValue {
     __strong typeof(self.callObj) callObj = self.callObj;
@@ -148,16 +86,26 @@ static char sVVMBindAssocoationKey = 0;
         return FALSE;
     }
     
-    return [self checkAndCallMethodIsChangeOn:callObj WithObj:newValue];
+    VVMBindMethodCheck userMethod = self.checkBlock;
+    if (nil == userMethod) {
+        return TRUE;
+    }
+    
+    return userMethod(newValue);
 }
 
-- (id)modification:(id)newValue {
+- (id)transformation:(id)newValue {
     __strong typeof(self.callObj) callObj = self.callObj;
     if (nil == callObj) {
         return newValue;
     }
     
-    return [self checkAndCallMethodModificationOn:callObj WithObj:newValue];
+    VVMBindMethodTransformation userMethod = self.transformationBlock;
+    if (nil == userMethod) {
+        return newValue;
+    }
+    
+    return userMethod(newValue);
 }
 
 - (void)update:(id)newValue {
@@ -165,15 +113,19 @@ static char sVVMBindAssocoationKey = 0;
     if (nil == callObj) {
         return;
     }
-
+    
+    VVMBindMethodUpdated userMethod = self.updatedBlock;
+    BOOL successful = TRUE;
+    
     @try {
         [self.callObj setValue:newValue forKeyPath:self.callKeyPath];
     } @catch (...) {
-        [self checkAndCallMethodDidNotChanged:callObj WithObj:newValue];
-        return;
+        successful = FALSE;
     }
     
-    [self checkAndCallMethodChanged:callObj WithObj:newValue];
+    if (nil != userMethod) {
+        userMethod(successful, newValue);
+    }
 }
 
 

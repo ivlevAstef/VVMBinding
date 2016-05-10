@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, eVVMBindingModificator) {
-    eVVMBindingModificator_To = 1 << 0,
-    eVVMBindingModificator_From = 1 << 1,
-    eVVMBindingModificator_Both = eVVMBindingModificator_To | eVVMBindingModificator_From,
+typedef NS_ENUM(NSUInteger, eVVMBindingDirection) {
+    eVVMBindingDirection_To = 1 << 0,
+    eVVMBindingDirection_From = 1 << 1,
+    eVVMBindingDirection_Both = eVVMBindingDirection_To | eVVMBindingDirection_From,
 };
 
+typedef NS_ENUM(NSUInteger, eVVMBindingInitial) {
+    eVVMBindingInitial_Nothing,
+    eVVMBindingInitial_To,
+    eVVMBindingInitial_From,
+};
 
 /**
  *  Called Methods:
@@ -26,13 +31,13 @@ typedef NS_ENUM(NSUInteger, eVVMBindingModificator) {
  */
 @interface VVMBinding : NSObject
 
-+ (void)bind:(id)parent keyPath:(NSString*)keyPath modificator:(eVVMBindingModificator)modificator with:(id)parent2 keyPath:(NSString*)keyPath2;
++ (void)bind:(id)parent keyPath:(NSString*)keyPath direction:(eVVMBindingDirection)direction initial:(eVVMBindingInitial)initial with:(id)parent2 keyPath:(NSString*)keyPath2;
 
 @end
 
-#define VVMBind(PARENT, OBJ, MODIFICATOR, PARENT2, OBJ2) \
+#define VVMBind(PARENT, OBJ, DIRECTION, INITIAL, PARENT2, OBJ2) \
 do { \
     typeof(PARENT.OBJ) __attribute__((unused)) check = PARENT.OBJ; \
     typeof(PARENT2.OBJ2) __attribute__((unused)) check2 = PARENT2.OBJ2; \
-    [VVMBinding bind:PARENT keyPath:@#OBJ modificator:eVVMBindingModificator_##MODIFICATOR with:PARENT2 keyPath:@#OBJ2]; \
+    [VVMBinding bind:PARENT keyPath:@#OBJ direction:eVVMBindingDirection_##DIRECTION initial:eVVMBindingInitial_##INITIAL with:PARENT2 keyPath:@#OBJ2]; \
 } while(0);

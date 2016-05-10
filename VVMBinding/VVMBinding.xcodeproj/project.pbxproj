@@ -34,6 +34,7 @@
 		A5FF94D61CDDBD6B00A23401 /* VVMBind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMBind.m; sourceTree = "<group>"; };
 		A5FF94D81CDDC6D200A23401 /* VVMKVObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMKVObserver.h; sourceTree = "<group>"; };
 		A5FF94D91CDDC6D200A23401 /* VVMKVObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMKVObserver.m; sourceTree = "<group>"; };
+		A5FF94DC1CE1AB3800A23401 /* IVVMBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVVMBind.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +67,7 @@
 		A5FF94A11CDC5D4F00A23401 /* VVMBinding */ = {
 			isa = PBXGroup;
 			children = (
+				A5FF94DC1CE1AB3800A23401 /* IVVMBind.h */,
 				A5FF94D51CDDBD6B00A23401 /* VVMBind.h */,
 				A5FF94D61CDDBD6B00A23401 /* VVMBind.m */,
 				A5FF94D81CDDC6D200A23401 /* VVMKVObserver.h */,

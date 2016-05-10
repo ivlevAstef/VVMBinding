@@ -63,7 +63,7 @@ static char sVVMKVObserverAssocoationKey = 0;
     id newValue = [change objectForKey:NSKeyValueChangeNewKey];
     
     if ([bind check:newValue]) {
-        newValue = [bind modification:newValue];
+        newValue = [bind transformation:newValue];
         [bind update:newValue];
     }
     

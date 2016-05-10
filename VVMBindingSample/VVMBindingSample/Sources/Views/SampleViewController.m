@@ -28,22 +28,40 @@
     
     if (self) {
         self.viewModel = viewModel;
-        [self bind:viewModel];
     }
     
     return self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self bind:self.viewModel];
+}
+
 - (void)bind:(SampleViewModel*)viewModel {
-    VVMBind(self, sampleLabel.text, From, viewModel, staticText);
-    VVMBind(self, sampleTextField.text, Both, viewModel, editableText);
+    VVMBind(self, sampleLabel.text, From, From, viewModel, staticText);
+    VVMBind(self, sampleTextField.text, Both, From, viewModel, editableText);
+    VVMBind(self, sampleTextField.placeholder, Both, From, viewModel, editableTextPlaceholder);
     
-    VVMBind(self, sampleSlider.value, Both, viewModel, dynamicValue);
-    VVMBind(self, sampleSlider.minimumValue, Both, viewModel, dynamicValueMin);
-    VVMBind(self, sampleSlider.maximumValue, Both, viewModel, dynamicValueMax);
+    VVMBind(self, sampleSlider.minimumValue, Both, From, viewModel, dynamicValueMin);
+    VVMBind(self, sampleSlider.maximumValue, Both, From, viewModel, dynamicValueMax);
+    VVMBind(self, sampleSlider.value, Both, From, viewModel, dynamicValue);
     
-    VVMBind(self, sampleSwitch.on, Both, viewModel, booleanValue);
+    VVMBind(self, sampleSwitch.on, Both, From, viewModel, booleanValue);
     
+    /*[VVMObject(self, sampleTextField.text) check:^(id NewValue) {
+        
+    }];
+    
+    [VVMObject(self, sampleTextField.text) transformation:^(id NewValue) {
+        
+    }];
+    
+    [VVMObject(self, sampleTextField.text) update:^(id NewValue) {
+        
+    }];
+    */
     //VVMBind(self, samplePickerView.dataSource, Both, viewModel, pickerData);
 }
 

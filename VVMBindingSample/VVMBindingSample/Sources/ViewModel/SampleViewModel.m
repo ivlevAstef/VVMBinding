@@ -16,14 +16,14 @@
     if (self) {
         self.staticText = @"Sample Static Text";
         
-        self.editableText = @"";
+        self.editableText = @"Test Text";
         self.editableTextPlaceholder = @"Write";
         
         self.dynamicValue = 25;
         self.dynamicValueMax = 100;
         self.dynamicValueMin = 0;
         
-        self.booleanValue = TRUE;
+        self.booleanValue = FALSE;
         
         self.pickerData = @[
                             @"Value1",
@@ -40,10 +40,11 @@
 }
 
 - (void)runAutoUpdate {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.staticText = @"Sample Static Text Update By Time";
     });
 }
+/*
 
 - (BOOL)VVMIsChangeEditableTextTo:(id)NewValue {
     NSLog(@"Editable Text is Changed with value:%@", NewValue);
@@ -76,5 +77,6 @@
 - (void)VVMMChangedBooleanValueTo:(id)NewValue {
     NSLog(@"Boolean Value Changed:%@", NewValue);
 }
+*/
 
 @end

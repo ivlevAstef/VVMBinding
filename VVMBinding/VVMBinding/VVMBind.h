@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IVVMBind.h"
 
-@interface VVMBind : NSObject
+@interface VVMBind : NSObject<IVVMBind>
 
-+ (instancetype)createFor:(id)obj withKeyPath:(NSString*)keyPath withCallObj:(id)callObj withKeyPath:(NSString*)callKeyPath;
++ (instancetype)createFor:(id)obj withKeyPath:(NSString*)keyPath withCallObj:(id)callObj withKeyPath:(NSString*)callKeyPath initial:(BOOL)initial;
 
 @property (nonatomic, readonly, weak) id obj;
 @property (nonatomic, readonly) NSString* keyPath;
@@ -19,7 +20,7 @@
 @property (nonatomic, readonly) NSString* callKeyPath;
 
 - (BOOL)check:(id)newValue;
-- (id)modification:(id)newValue;
+- (id)transformation:(id)newValue;
 - (void)update:(id)newValue;
 
 @end
