@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "INavigator.h"
 
-@interface Navigator : NSObject
+@interface Navigator : NSObject<INavigator>
 
 @property (nonatomic, readonly) UINavigationController* navigation;
-
-- (void)showSampleView;
 
 @end

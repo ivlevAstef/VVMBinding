@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "SampleViewModel.h"
+#import "INavigator.h"
 
 @interface SampleViewController : UIViewController
 
-- (id)initWithViewModel:(SampleViewModel*)viewModel;
+- (id)initWithNavigator:(id<INavigator>)navigator WithViewModel:(SampleViewModel*)viewModel;
 
 @end

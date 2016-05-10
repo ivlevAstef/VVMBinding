@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A5FF94A31CDC5D4F00A23401 /* VVMBinding.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5FF94A21CDC5D4F00A23401 /* VVMBinding.h */; };
 		A5FF94A51CDC5D4F00A23401 /* VVMBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94A41CDC5D4F00A23401 /* VVMBinding.m */; };
-		A5FF94D71CDDBD6B00A23401 /* VVMBind.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94D61CDDBD6B00A23401 /* VVMBind.m */; };
-		A5FF94DA1CDDC6D200A23401 /* VVMKVObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94D91CDDC6D200A23401 /* VVMKVObserver.m */; };
+		A5FF94D71CDDBD6B00A23401 /* VVMObserverBind.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94D61CDDBD6B00A23401 /* VVMObserverBind.m */; };
 		A5FF94DF1CE1B63B00A23401 /* VVMBindPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94DE1CE1B63B00A23401 /* VVMBindPath.m */; };
-		A5FF94E01CE1BDFB00A23401 /* IVVMBind.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5FF94DC1CE1AB3800A23401 /* IVVMBind.h */; };
-		A5FF94E31CE1C56F00A23401 /* VVMBindBase.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94E21CE1C56F00A23401 /* VVMBindBase.m */; };
+		A5FF94E31CE1C56F00A23401 /* VVMBind.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94E21CE1C56F00A23401 /* VVMBind.m */; };
+		A5FF94EA1CE1D02400A23401 /* VVMKVObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94E91CE1D02400A23401 /* VVMKVObserver.m */; };
+		A5FF94ED1CE1D05C00A23401 /* VVMObserverFabric.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94EC1CE1D05C00A23401 /* VVMObserverFabric.m */; };
+		A5FF94F01CE1D2F600A23401 /* VVMInitialObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94EF1CE1D2F600A23401 /* VVMInitialObserver.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +23,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				A5FF94E01CE1BDFB00A23401 /* IVVMBind.h in CopyFiles */,
-				A5FF94A31CDC5D4F00A23401 /* VVMBinding.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,17 +30,21 @@
 
 /* Begin PBXFileReference section */
 		A5FF949F1CDC5D4F00A23401 /* libVVMBinding.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVVMBinding.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5FF94A21CDC5D4F00A23401 /* VVMBinding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VVMBinding.h; sourceTree = "<group>"; };
 		A5FF94A41CDC5D4F00A23401 /* VVMBinding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VVMBinding.m; sourceTree = "<group>"; };
-		A5FF94D51CDDBD6B00A23401 /* VVMBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMBind.h; sourceTree = "<group>"; };
-		A5FF94D61CDDBD6B00A23401 /* VVMBind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMBind.m; sourceTree = "<group>"; };
-		A5FF94D81CDDC6D200A23401 /* VVMKVObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMKVObserver.h; sourceTree = "<group>"; };
-		A5FF94D91CDDC6D200A23401 /* VVMKVObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMKVObserver.m; sourceTree = "<group>"; };
-		A5FF94DC1CE1AB3800A23401 /* IVVMBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVVMBind.h; sourceTree = "<group>"; };
+		A5FF94D51CDDBD6B00A23401 /* VVMObserverBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMObserverBind.h; sourceTree = "<group>"; };
+		A5FF94D61CDDBD6B00A23401 /* VVMObserverBind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMObserverBind.m; sourceTree = "<group>"; };
 		A5FF94DD1CE1B63B00A23401 /* VVMBindPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMBindPath.h; sourceTree = "<group>"; };
 		A5FF94DE1CE1B63B00A23401 /* VVMBindPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMBindPath.m; sourceTree = "<group>"; };
-		A5FF94E11CE1C56F00A23401 /* VVMBindBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMBindBase.h; sourceTree = "<group>"; };
-		A5FF94E21CE1C56F00A23401 /* VVMBindBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMBindBase.m; sourceTree = "<group>"; };
+		A5FF94E11CE1C56F00A23401 /* VVMBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMBind.h; sourceTree = "<group>"; };
+		A5FF94E21CE1C56F00A23401 /* VVMBind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMBind.m; sourceTree = "<group>"; };
+		A5FF94E51CE1D01900A23401 /* IVVMBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVVMBind.h; path = Public/IVVMBind.h; sourceTree = "<group>"; };
+		A5FF94E61CE1D01900A23401 /* VVMBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVMBinding.h; path = Public/VVMBinding.h; sourceTree = "<group>"; };
+		A5FF94E81CE1D02400A23401 /* VVMKVObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMKVObserver.h; sourceTree = "<group>"; };
+		A5FF94E91CE1D02400A23401 /* VVMKVObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMKVObserver.m; sourceTree = "<group>"; };
+		A5FF94EB1CE1D05C00A23401 /* VVMObserverFabric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMObserverFabric.h; sourceTree = "<group>"; };
+		A5FF94EC1CE1D05C00A23401 /* VVMObserverFabric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMObserverFabric.m; sourceTree = "<group>"; };
+		A5FF94EE1CE1D2F600A23401 /* VVMInitialObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMInitialObserver.h; sourceTree = "<group>"; };
+		A5FF94EF1CE1D2F600A23401 /* VVMInitialObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMInitialObserver.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,19 +77,39 @@
 		A5FF94A11CDC5D4F00A23401 /* VVMBinding */ = {
 			isa = PBXGroup;
 			children = (
+				A5FF94E41CE1CFDC00A23401 /* Public */,
+				A5FF94E71CE1D02400A23401 /* Observers */,
 				A5FF94DD1CE1B63B00A23401 /* VVMBindPath.h */,
 				A5FF94DE1CE1B63B00A23401 /* VVMBindPath.m */,
-				A5FF94DC1CE1AB3800A23401 /* IVVMBind.h */,
-				A5FF94E11CE1C56F00A23401 /* VVMBindBase.h */,
-				A5FF94E21CE1C56F00A23401 /* VVMBindBase.m */,
-				A5FF94D51CDDBD6B00A23401 /* VVMBind.h */,
-				A5FF94D61CDDBD6B00A23401 /* VVMBind.m */,
-				A5FF94D81CDDC6D200A23401 /* VVMKVObserver.h */,
-				A5FF94D91CDDC6D200A23401 /* VVMKVObserver.m */,
-				A5FF94A21CDC5D4F00A23401 /* VVMBinding.h */,
+				A5FF94E11CE1C56F00A23401 /* VVMBind.h */,
+				A5FF94E21CE1C56F00A23401 /* VVMBind.m */,
+				A5FF94D51CDDBD6B00A23401 /* VVMObserverBind.h */,
+				A5FF94D61CDDBD6B00A23401 /* VVMObserverBind.m */,
 				A5FF94A41CDC5D4F00A23401 /* VVMBinding.m */,
 			);
 			path = VVMBinding;
+			sourceTree = "<group>";
+		};
+		A5FF94E41CE1CFDC00A23401 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				A5FF94E51CE1D01900A23401 /* IVVMBind.h */,
+				A5FF94E61CE1D01900A23401 /* VVMBinding.h */,
+			);
+			name = Public;
+			sourceTree = "<group>";
+		};
+		A5FF94E71CE1D02400A23401 /* Observers */ = {
+			isa = PBXGroup;
+			children = (
+				A5FF94EB1CE1D05C00A23401 /* VVMObserverFabric.h */,
+				A5FF94EC1CE1D05C00A23401 /* VVMObserverFabric.m */,
+				A5FF94E81CE1D02400A23401 /* VVMKVObserver.h */,
+				A5FF94E91CE1D02400A23401 /* VVMKVObserver.m */,
+				A5FF94EE1CE1D2F600A23401 /* VVMInitialObserver.h */,
+				A5FF94EF1CE1D2F600A23401 /* VVMInitialObserver.m */,
+			);
+			path = Observers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +168,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5FF94E31CE1C56F00A23401 /* VVMBindBase.m in Sources */,
-				A5FF94DA1CDDC6D200A23401 /* VVMKVObserver.m in Sources */,
-				A5FF94D71CDDBD6B00A23401 /* VVMBind.m in Sources */,
+				A5FF94E31CE1C56F00A23401 /* VVMBind.m in Sources */,
+				A5FF94EA1CE1D02400A23401 /* VVMKVObserver.m in Sources */,
+				A5FF94F01CE1D2F600A23401 /* VVMInitialObserver.m in Sources */,
+				A5FF94ED1CE1D05C00A23401 /* VVMObserverFabric.m in Sources */,
+				A5FF94D71CDDBD6B00A23401 /* VVMObserverBind.m in Sources */,
 				A5FF94A51CDC5D4F00A23401 /* VVMBinding.m in Sources */,
 				A5FF94DF1CE1B63B00A23401 /* VVMBindPath.m in Sources */,
 			);

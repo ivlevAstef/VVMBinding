@@ -17,16 +17,19 @@
 @property (weak, nonatomic) IBOutlet UISwitch* sampleSwitch;
 @property (weak, nonatomic) IBOutlet UIPickerView* samplePickerView;
 
+
+@property (nonatomic, strong) id<INavigator> navigator;
 @property (nonatomic, strong) SampleViewModel* viewModel;
 
 @end
 
 @implementation SampleViewController
 
-- (id)initWithViewModel:(SampleViewModel*)viewModel {
+- (id)initWithNavigator:(id<INavigator>)navigator WithViewModel:(SampleViewModel*)viewModel {
     self = [super init];
     
     if (self) {
+        self.navigator = navigator;
         self.viewModel = viewModel;
     }
     
@@ -58,19 +61,18 @@
     VVMBind(self, sampleTextField.text, Both, From, viewModel, editableText);
     VVMBind(self, sampleTextField.placeholder, Both, From, viewModel, editableTextPlaceholder);
     
-    VVMBind(self, sampleSlider.minimumValue, Both, From, viewModel, dynamicValueMin);
-    VVMBind(self, sampleSlider.maximumValue, Both, From, viewModel, dynamicValueMax);
-    VVMBind(self, sampleSlider.value, Both, From, viewModel, dynamicValue);
+    //VVMBind(self, sampleSlider.minimumValue, Both, From, viewModel, dynamicValueMin);
+    //VVMBind(self, sampleSlider.maximumValue, Both, From, viewModel, dynamicValueMax);
+    //VVMBind(self, sampleSlider.value, Both, From, viewModel, dynamicValue);
     
     VVMBind(self, sampleSwitch.on, Both, From, viewModel, booleanValue);
+    
     
     //VVMBind(self, samplePickerView.dataSource, Both, viewModel, pickerData);
 }
 
-/*
-- (void)VVMMNotChangesSampleSwitchIsOnTo:(id)NewValue {
-    self.sampleSwitch set
+- (IBAction)close:(id)sender {
+    [self.navigator showSample2View];
 }
-*/
 
 @end

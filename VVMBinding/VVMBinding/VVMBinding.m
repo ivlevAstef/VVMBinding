@@ -8,12 +8,12 @@
 
 #import "VVMBinding.h"
 
-#import "VVMBind.h"
-#import "VVMKVObserver.h"
+#import "VVMObserverBind.h"
+#import "VVMObserverFabric.h"
 
 @interface VVMBinding ()
 
-@property (nonatomic, strong) NSMapTable<VVMBindPath*, VVMBindBase*>* binds;
+@property (nonatomic, strong) NSMapTable<VVMBindPath*, VVMBind*>* binds;
 
 @end
 
@@ -53,27 +53,24 @@
 }
 
 - (void)bind:(VVMBindPath*)path with:(VVMBindPath*)path2 initial:(BOOL)initial {
-    VVMBind* bindObj = [VVMBind createByPath:path withCallPath:path2];
+    VVMObserverBind* observerBindObj = [VVMObserverBind createByPath:path withCallPath:path2];
     
-    VVMBindBase* baseBindObj = [self.binds objectForKey:path2];
-    if (nil != baseBindObj) {
-        [baseBindObj copyTo:bindObj];
-        [baseBindObj unbind];
+    VVMBind* bindObj = [self.binds objectForKey:path2];
+    if (nil != bindObj) {
+        [bindObj copyTo:observerBindObj];
+        [bindObj unbind];
     }
     
-    [self.binds setObject:bindObj forKey:path2];
-    [VVMKVObserver createFor:bindObj];
+    [self.binds setObject:observerBindObj forKey:path2];
     
-    if (initial) {
-        [bindObj initial];
-    }
+    id __attribute__((unused)) unused = [VVMObserverFabric createByBind:observerBindObj withInitial:initial];
 }
 
-- (VVMBindBase*)baseBindByPath:(VVMBindPath*)path {
-    VVMBindBase* result = [self.binds objectForKey:path];
+- (VVMBind*)baseBindByPath:(VVMBindPath*)path {
+    VVMBind* result = [self.binds objectForKey:path];
     
     if (nil == result) {
-        result = [VVMBindBase createByPath:path];
+        result = [VVMBind createByPath:path];
         [self.binds setObject:result forKey:path];
     }
     

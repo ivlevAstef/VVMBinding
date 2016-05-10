@@ -16,6 +16,8 @@
 		A5FF94CD1CDC7B1F00A23401 /* libVVMBinding.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FF94B21CDC5E3200A23401 /* libVVMBinding.a */; };
 		A5FF94D11CDC9F2600A23401 /* SampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94CF1CDC9F2600A23401 /* SampleViewController.m */; };
 		A5FF94D21CDC9F2600A23401 /* SampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FF94D01CDC9F2600A23401 /* SampleViewController.xib */; };
+		A5FF94F51CE1D5FD00A23401 /* Sample2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94F31CE1D5FD00A23401 /* Sample2ViewController.m */; };
+		A5FF94F61CE1D5FD00A23401 /* Sample2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FF94F41CE1D5FD00A23401 /* Sample2ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		A5FF94CE1CDC9F2600A23401 /* SampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleViewController.h; sourceTree = "<group>"; };
 		A5FF94CF1CDC9F2600A23401 /* SampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleViewController.m; sourceTree = "<group>"; };
 		A5FF94D01CDC9F2600A23401 /* SampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SampleViewController.xib; sourceTree = "<group>"; };
+		A5FF94F11CE1D56F00A23401 /* INavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INavigator.h; sourceTree = "<group>"; };
+		A5FF94F21CE1D5FD00A23401 /* Sample2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sample2ViewController.h; sourceTree = "<group>"; };
+		A5FF94F31CE1D5FD00A23401 /* Sample2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sample2ViewController.m; sourceTree = "<group>"; };
+		A5FF94F41CE1D5FD00A23401 /* Sample2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Sample2ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				A5FF94BC1CDC604500A23401 /* Sources */,
-				A5FF94821CDC5D1D00A23401 /* AppDelegate.h */,
 				A5FF94831CDC5D1D00A23401 /* AppDelegate.m */,
+				A5FF94821CDC5D1D00A23401 /* AppDelegate.h */,
 				A5FF948B1CDC5D1D00A23401 /* Assets.xcassets */,
 				A5FF948D1CDC5D1D00A23401 /* LaunchScreen.storyboard */,
 				A5FF94901CDC5D1D00A23401 /* Info.plist */,
@@ -118,6 +124,7 @@
 				A5FF94BE1CDC604500A23401 /* Model */,
 				A5FF94BF1CDC604500A23401 /* ViewModel */,
 				A5FF94C21CDC604500A23401 /* Views */,
+				A5FF94F11CE1D56F00A23401 /* INavigator.h */,
 				A5FF94CA1CDC650B00A23401 /* Navigator.h */,
 				A5FF94CB1CDC650B00A23401 /* Navigator.m */,
 			);
@@ -146,6 +153,9 @@
 				A5FF94CE1CDC9F2600A23401 /* SampleViewController.h */,
 				A5FF94CF1CDC9F2600A23401 /* SampleViewController.m */,
 				A5FF94D01CDC9F2600A23401 /* SampleViewController.xib */,
+				A5FF94F21CE1D5FD00A23401 /* Sample2ViewController.h */,
+				A5FF94F31CE1D5FD00A23401 /* Sample2ViewController.m */,
+				A5FF94F41CE1D5FD00A23401 /* Sample2ViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5FF948F1CDC5D1D00A23401 /* LaunchScreen.storyboard in Resources */,
+				A5FF94F61CE1D5FD00A23401 /* Sample2ViewController.xib in Resources */,
 				A5FF94D21CDC9F2600A23401 /* SampleViewController.xib in Resources */,
 				A5FF948C1CDC5D1D00A23401 /* Assets.xcassets in Resources */,
 			);
@@ -238,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5FF94C71CDC604500A23401 /* SampleViewModel.m in Sources */,
+				A5FF94F51CE1D5FD00A23401 /* Sample2ViewController.m in Sources */,
 				A5FF94D11CDC9F2600A23401 /* SampleViewController.m in Sources */,
 				A5FF94841CDC5D1D00A23401 /* AppDelegate.m in Sources */,
 				A5FF94CC1CDC650B00A23401 /* Navigator.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "Navigator.h"
 #import "SampleViewController.h"
+#import "Sample2ViewController.h"
 
 @interface Navigator ()
 
@@ -29,7 +30,13 @@
 
 - (void)showSampleView {
     SampleViewModel* viewModel = [[SampleViewModel alloc] init];
-    SampleViewController* view = [[SampleViewController alloc] initWithViewModel:viewModel];
+    SampleViewController* view = [[SampleViewController alloc] initWithNavigator:self WithViewModel:viewModel];
+    
+    [self.navigation setViewControllers:@[view]];
+}
+
+- (void)showSample2View {
+    Sample2ViewController* view = [[Sample2ViewController alloc] initWithNavigator:self];
     
     [self.navigation setViewControllers:@[view]];
 }

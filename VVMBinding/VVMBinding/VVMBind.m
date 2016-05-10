@@ -2,91 +2,80 @@
 //  VVMBind.m
 //  VVMBinding
 //
-//  Created by Alexander Ivlev on 07/05/16.
+//  Created by Alexander Ivlev on 10/05/16.
 //  Copyright © 2016 Alexander Ivlev. All rights reserved.
 //
 
 #import "VVMBind.h"
 #import <objc/runtime.h>
 
+static char sVVMBindAssociationKey = 0;
+
 @interface VVMBind ()
 
-@property (nonatomic, strong) VVMBindPath* callPath;
+@property (nonatomic, strong) VVMBindPath* path;
+@property (nonatomic, assign) NSMutableSet* associations;
 
 @end
 
 @implementation VVMBind
 
-+ (instancetype)createByPath:(VVMBindPath*)path withCallPath:(VVMBindPath*)callPath {
-    return [[self alloc] initByPath:path withCallPath:callPath];
++ (instancetype)createByPath:(VVMBindPath*)path {
+    return [[self alloc] initByPath:path];
 }
 
-- (id)initByPath:(VVMBindPath*)path withCallPath:(VVMBindPath*)callPath{
-    self = [super initByPath:path];
+- (id)initByPath:(VVMBindPath*)path {
+    self = [super init];
     if (self) {
-        self.callPath = callPath;
+        self.path = path;
+        
+        [self bindRetain];
     }
     
     return self;
 }
 
-- (void)initial {
-    @try {
-        id value = [self.path.parent valueForKeyPath:self.path.keyPath];
-        if ([self checkPackage:value]) {
-            value = [self transformationPackage:value];
-            [self updatePackage:value];
-        }
-    } @catch(...) {
-    }
+- (void)unbind {
+    [self bindRelease];
 }
 
-- (BOOL)checkPackage:(id)newValue {
-    __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
-    if (nil == callObj) {
-        return FALSE;
-    }
-    
-    VVMBindMethodCheck userMethod = self.checkBlock;
-    if (nil == userMethod) {
-        return TRUE;
-    }
-    
-    return userMethod(newValue);
+- (void)setAssociations:(NSMutableSet*)associations {
+    objc_setAssociatedObject(self.path.parent, &sVVMBindAssociationKey, associations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (id)transformationPackage:(id)newValue {
-    __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
-    if (nil == callObj) {
-        return newValue;
-    }
-    
-    VVMBindMethodTransformation userMethod = self.transformationBlock;
-    if (nil == userMethod) {
-        return newValue;
-    }
-    
-    return userMethod(newValue);
+- (NSMutableSet*)associations {
+    return objc_getAssociatedObject(self.path.parent, &sVVMBindAssociationKey) ?: [NSMutableSet set];
 }
 
-- (void)updatePackage:(id)newValue {
-    __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
-    if (nil == callObj) {
-        return;
-    }
+- (void)bindRetain {
+    NSMutableSet* associations = [self associations];
+    [associations addObject:self];
+    [self setAssociations:associations];
+}
+
+- (void)bindRelease {
+    NSMutableSet* associations = [self associations];
+    [associations removeObject:self];
+}
+
+- (void)check:(VVMBindMethodCheck)checkBlock {
+    self.checkBlock = checkBlock;
+}
+
+- (void)transformation:(VVMBindMethodTransformation)transformationBlock {
+    self.transformationBlock = transformationBlock;
+}
+
+- (void)updated:(VVMBindMethodUpdated)updatedBlock {
+    self.updatedBlock = updatedBlock;
+}
+
+- (void)copyTo:(VVMBind*)object {
+    assert(nil != object);
     
-    VVMBindMethodUpdated userMethod = self.updatedBlock;
-    BOOL successful = TRUE;
-    
-    @try {
-        [callObj setValue:newValue forKeyPath:self.callPath.keyPath];
-    } @catch (...) {
-        successful = FALSE;
-    }
-    
-    if (nil != userMethod) {
-        userMethod(successful, newValue);
-    }
+    object.checkBlock = self.checkBlock;
+    object.transformationBlock = self.transformationBlock;
+    object.updatedBlock = self.updatedBlock;
 }
 
 @end

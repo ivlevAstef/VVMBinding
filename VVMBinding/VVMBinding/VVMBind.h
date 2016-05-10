@@ -2,26 +2,27 @@
 //  VVMBind.h
 //  VVMBinding
 //
-//  Created by Alexander Ivlev on 07/05/16.
+//  Created by Alexander Ivlev on 10/05/16.
 //  Copyright © 2016 Alexander Ivlev. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "VVMBindBase.h"
+#import "IVVMBind.h"
 #import "VVMBindPath.h"
 
-@interface VVMBind : VVMBindBase
+@interface VVMBind : NSObject <IVVMBind>
 
-+ (instancetype)createByPath:(VVMBindPath*)path withCallPath:(VVMBindPath*)callPath;
++ (instancetype)createByPath:(VVMBindPath*)path;
+- (id)initByPath:(VVMBindPath*)path;
 
-- (void)initial;
+- (void)unbind;
 
-@property (nonatomic, readonly) VVMBindPath* callPath;
+@property (nonatomic, readonly) VVMBindPath* path;
 
-@property (nonatomic, strong) id observer;
+@property (atomic, copy) VVMBindMethodCheck checkBlock;
+@property (atomic, copy) VVMBindMethodTransformation transformationBlock;
+@property (atomic, copy) VVMBindMethodUpdated updatedBlock;
 
-- (BOOL)checkPackage:(id)newValue;
-- (id)transformationPackage:(id)newValue;
-- (void)updatePackage:(id)newValue;
+- (void)copyTo:(VVMBind*)object;
 
 @end

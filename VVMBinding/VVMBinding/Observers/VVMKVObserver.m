@@ -17,17 +17,13 @@ static volatile int32_t isObserved = FALSE;
 @property (nonatomic, unsafe_unretained) id observeObject;
 @property (nonatomic, copy) id observeKeyPath;
 
-@property (nonatomic, weak) VVMBind* bind;
+@property (nonatomic, weak) VVMObserverBind* bind;
 
 @end
 
 @implementation VVMKVObserver
 
-+ (void)createFor:(VVMBind*)bind {
-    id __attribute__((unused)) unused = [[self alloc] initFor:bind];
-}
-
-- (id)initFor:(VVMBind*)bind {
+- (id)initByBind:(VVMObserverBind*)bind {
     assert(nil != bind);
     
     self = [super init];
@@ -38,7 +34,6 @@ static volatile int32_t isObserved = FALSE;
         self.observeKeyPath = self.bind.path.keyPath;
         
         [self.observeObject addObserver:self forKeyPath:self.observeKeyPath options:NSKeyValueObservingOptionNew context:nil];
-        self.bind.observer = self;
     }
     
     return self;
@@ -61,9 +56,9 @@ static volatile int32_t isObserved = FALSE;
     
     id newValue = [change objectForKey:NSKeyValueChangeNewKey];
     
-    if ([bind checkPackage:newValue]) {
-        newValue = [bind transformationPackage:newValue];
-        [bind updatePackage:newValue];
+    if ([bind observerCheck:newValue]) {
+        newValue = [bind observerTransformation:newValue];
+        [bind observerUpdate:newValue];
     }
     
     isObserved = FALSE;
