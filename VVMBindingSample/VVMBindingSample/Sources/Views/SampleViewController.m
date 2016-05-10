@@ -61,9 +61,9 @@
     VVMBind(self, sampleTextField.text, Both, From, viewModel, editableText);
     VVMBind(self, sampleTextField.placeholder, From, From, viewModel, editableTextPlaceholder);
     
-    //VVMBind(self, sampleSlider.minimumValue, Both, From, viewModel, dynamicValueMin);
-    //VVMBind(self, sampleSlider.maximumValue, Both, From, viewModel, dynamicValueMax);
-    //VVMBind(self, sampleSlider.value, Both, From, viewModel, dynamicValue);
+    VVMBind(self, sampleSlider.minimumValue, From, From, viewModel, dynamicValueMin);
+    VVMBind(self, sampleSlider.maximumValue, From, From, viewModel, dynamicValueMax);
+    VVMBind(self, sampleSlider.value, Both, From, viewModel, dynamicValue);
     
     VVMBind(self, sampleSwitch.on, Both, From, viewModel, booleanValue);
     

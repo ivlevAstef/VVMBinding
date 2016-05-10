@@ -1,5 +1,5 @@
 //
-//  VVMUISwitchObserver.h
+//  VVMUISliderObserver.h
 //  VVMBinding
 //
 //  Created by Alexander Ivlev on 10/05/16.
@@ -9,8 +9,8 @@
 #import "VVMObserverBind.h"
 #import <UIKit/UIKit.h>
 
-@interface VVMUISwitchObserver : NSObject
+@interface VVMUISliderObserver : NSObject
 
-- (id)initByBind:(VVMObserverBind*)bind UseSwitch:(UISwitch*)uiSwitch;
+- (id)initByBind:(VVMObserverBind*)bind UseSlider:(UISlider*)slider;
 
 @end

@@ -11,10 +11,10 @@
 #import "VVMInitialObserver.h"
 
 #import "VVMKVObserver.h"
+
 #import "VVMUITextFieldObserver.h"
 #import "VVMUISwitchObserver.h"
-
-#import <UIKit/UIKit.h>
+#import "VVMUISliderObserver.h"
 
 @implementation VVMObserverFabric
 
@@ -33,6 +33,10 @@
                [self path:bind.path isKindOf:[UISwitch class] andValue:@"isOn"]) {
         UISwitch* uiSwitch = [self path:bind.path getObjectKindOf:[UISwitch class]];
         observer = [[VVMUISwitchObserver alloc] initByBind:bind UseSwitch:uiSwitch];
+        
+    } else if ([self path:bind.path isKindOf:[UISlider class] andValue:@"value"]) {
+        UISlider* slider = [self path:bind.path getObjectKindOf:[UISlider class]];
+        observer = [[VVMUISliderObserver alloc] initByBind:bind UseSlider:slider];
         
     } else {
         observer = [[VVMKVObserver alloc] initByBind:bind];

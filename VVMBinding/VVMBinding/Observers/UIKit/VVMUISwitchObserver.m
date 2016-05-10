@@ -29,7 +29,7 @@
     return self;
 }
 
-- (void)changeValue:(id)sender {
+- (void)changeValue:(UISwitch*)sender {
     __strong typeof(self.bind) bind = self.bind;
     if (nil == bind) {
         return;
