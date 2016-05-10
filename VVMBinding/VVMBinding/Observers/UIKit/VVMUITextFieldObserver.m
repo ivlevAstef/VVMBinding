@@ -24,7 +24,7 @@
         self.bind = bind;
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(textDidChange:)
+                                                 selector:@selector(changeValue:)
                                                      name:UITextFieldTextDidChangeNotification
                                                    object:textField];
         
@@ -33,7 +33,7 @@
     return self;
 }
 
-- (void)textDidChange:(NSNotification*)notification {
+- (void)changeValue:(NSNotification*)notification {
     __strong typeof(self.bind) bind = self.bind;
     if (nil == bind) {
         return;

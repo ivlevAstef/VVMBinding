@@ -12,6 +12,7 @@
 
 #import "VVMKVObserver.h"
 #import "VVMUITextFieldObserver.h"
+#import "VVMUISwitchObserver.h"
 
 #import <UIKit/UIKit.h>
 
@@ -27,6 +28,12 @@
     if ([self path:bind.path isKindOf:[UITextField class] andValue:@"text"]) {
         UITextField* textField = [self path:bind.path getObjectKindOf:[UITextField class]];
         observer = [[VVMUITextFieldObserver alloc] initByBind:bind UseTextField:textField];
+        
+    } else if ([self path:bind.path isKindOf:[UISwitch class] andValue:@"on"] ||
+               [self path:bind.path isKindOf:[UISwitch class] andValue:@"isOn"]) {
+        UISwitch* uiSwitch = [self path:bind.path getObjectKindOf:[UISwitch class]];
+        observer = [[VVMUISwitchObserver alloc] initByBind:bind UseSwitch:uiSwitch];
+        
     } else {
         observer = [[VVMKVObserver alloc] initByBind:bind];
     }
