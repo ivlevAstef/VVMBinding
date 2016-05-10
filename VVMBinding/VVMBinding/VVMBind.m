@@ -78,4 +78,8 @@ static char sVVMBindAssociationKey = 0;
     object.updatedBlock = self.updatedBlock;
 }
 
+- (NSString*)description {
+    return [NSString stringWithFormat:@"%@.%@", self.path.parent, self.path.keyPath];
+}
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "VVMBindPath.h"
+#import "VVMLogger.h"
 
 @implementation VVMBindPath
 
@@ -14,6 +15,8 @@
     VVMBindPath* result = [VVMBindPath new];
     result.parent = parent;
     result.keyPath = keyPath;
+    
+    VVMLogTrace(@"Create Bind path for: %@.%@", result.parent, result.keyPath);
     
     return result;
 }

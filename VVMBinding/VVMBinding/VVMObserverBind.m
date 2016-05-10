@@ -7,7 +7,7 @@
 //
 
 #import "VVMObserverBind.h"
-#import <objc/runtime.h>
+#import "VVMLogger.h"
 
 @interface VVMObserverBind ()
 
@@ -36,6 +36,7 @@
         return TRUE;
     }
     
+    VVMLogDebug(@"Call user method 'check' for:%@", self);
     return userMethod(newValue);
 }
 
@@ -45,6 +46,7 @@
         return newValue;
     }
     
+    VVMLogDebug(@"Call user method 'transformation' for:%@", self);
     return userMethod(newValue);
 }
 
@@ -59,6 +61,7 @@
     }
     
     if (nil != userMethod) {
+        VVMLogDebug(@"Call user method 'update' for:%@", self);
         userMethod(successful, newValue);
     }
 }
@@ -66,6 +69,7 @@
 - (void)observerExecute:(id)newValue {
     __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
     if (nil == callObj) {
+        VVMLogWarning(@"Observer can't found call object.");
         return;
     }
     
@@ -73,6 +77,10 @@
         newValue = [self observerTransformation:newValue];
         [self observerUpdate:newValue On:callObj];
     }
+}
+
+- (NSString*)description {
+    return [NSString stringWithFormat:@"%@.%@ --> %@.%@", self.path.parent, self.path.keyPath, self.callPath.parent, self.callPath.keyPath];
 }
 
 @end

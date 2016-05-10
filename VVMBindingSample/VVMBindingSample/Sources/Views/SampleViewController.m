@@ -58,6 +58,7 @@
     }];
     
     VVMBind(self, sampleLabel.text, From, From, viewModel, staticText);
+    
     VVMBind(self, sampleTextField.text, Both, From, viewModel, editableText);
     VVMBind(self, sampleTextField.placeholder, From, From, viewModel, editableTextPlaceholder);
     

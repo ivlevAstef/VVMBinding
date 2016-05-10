@@ -7,6 +7,7 @@
 //
 
 #import "VVMBinding.h"
+#import "VVMLogger.h"
 
 #import "VVMObserverBind.h"
 #import "VVMObserverFabric.h"
@@ -38,7 +39,7 @@
 }
 
 + (void)bind:(id)parent keyPath:(NSString*)keyPath direction:(eVVMBindingDirection)direction initial:(eVVMBindingInitial)initial with:(id)parent2 keyPath:(NSString*)keyPath2 {
-    assert(nil != parent && nil != keyPath && nil != parent2 && nil != keyPath2);
+    VVMLogAssert(nil != parent && nil != keyPath && nil != parent2 && nil != keyPath2);
     
     VVMBindPath* path = [VVMBindPath path:parent :keyPath];
     VVMBindPath* path2 = [VVMBindPath path:parent2 :keyPath2];
@@ -64,6 +65,8 @@
     [self.binds setObject:observerBindObj forKey:path2];
     
     id __attribute__((unused)) unused = [VVMObserverFabric createByBind:observerBindObj withInitial:initial];
+    
+    VVMLogDebug(@"Bind created for: %@", observerBindObj);
 }
 
 - (VVMBind*)baseBindByPath:(VVMBindPath*)path {
@@ -72,12 +75,16 @@
     if (nil == result) {
         result = [VVMBind createByPath:path];
         [self.binds setObject:result forKey:path];
+        
+        VVMLogDebug(@"Create temp bind. for: %@", result);
     }
     
     return result;
 }
 
 + (id<IVVMBind>)bindObject:(id)parent keyPath:(NSString*)keyPath {
+    VVMLogAssert(nil != parent && nil != keyPath);
+    
     VVMBindPath* path = [VVMBindPath path:parent :keyPath];
     return [[self defaultBinding] baseBindByPath:path];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "VVMObserverFabric.h"
+#import "VVMLogger.h"
 
 #import "VVMInitialObserver.h"
 
@@ -21,6 +22,7 @@
 + (id)createByBind:(VVMObserverBind*)bind withInitial:(BOOL)initial {
     if (initial) {
         id __attribute__((unused)) unused = [[VVMInitialObserver alloc] initByBind:bind];
+        VVMLogDebug(@"setup initial value for bind:%@", bind);
     }
     
     id observer = nil;
@@ -28,18 +30,22 @@
     if ([self path:bind.path isKindOf:[UITextField class] andValue:@"text"]) {
         UITextField* textField = [self path:bind.path getObjectKindOf:[UITextField class]];
         observer = [[VVMUITextFieldObserver alloc] initByBind:bind UseTextField:textField];
+        VVMLogDebug(@"Create UITextField observer for bind:%@", bind);
         
     } else if ([self path:bind.path isKindOf:[UISwitch class] andValue:@"on"] ||
                [self path:bind.path isKindOf:[UISwitch class] andValue:@"isOn"]) {
         UISwitch* uiSwitch = [self path:bind.path getObjectKindOf:[UISwitch class]];
         observer = [[VVMUISwitchObserver alloc] initByBind:bind UseSwitch:uiSwitch];
+        VVMLogDebug(@"Create UISwitch observer for bind:%@", bind);
         
     } else if ([self path:bind.path isKindOf:[UISlider class] andValue:@"value"]) {
         UISlider* slider = [self path:bind.path getObjectKindOf:[UISlider class]];
         observer = [[VVMUISliderObserver alloc] initByBind:bind UseSlider:slider];
+        VVMLogDebug(@"Create UISlider observer for bind:%@", bind);
         
     } else {
         observer = [[VVMKVObserver alloc] initByBind:bind];
+        VVMLogDebug(@"Create KVO observer for bind:%@", bind);
     }
     
     bind.observer = observer;

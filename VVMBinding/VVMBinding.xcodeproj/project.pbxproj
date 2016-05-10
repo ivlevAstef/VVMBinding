@@ -58,6 +58,7 @@
 		A5FF95061CE201A700A23401 /* VVMUITextFieldObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMUITextFieldObserver.m; sourceTree = "<group>"; };
 		A5FF95091CE202BB00A23401 /* VVMUISliderObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMUISliderObserver.h; sourceTree = "<group>"; };
 		A5FF950A1CE202BB00A23401 /* VVMUISliderObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMUISliderObserver.m; sourceTree = "<group>"; };
+		A5FF95101CE2085500A23401 /* VVMLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VVMLogger.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +91,7 @@
 		A5FF94A11CDC5D4F00A23401 /* VVMBinding */ = {
 			isa = PBXGroup;
 			children = (
+				A5FF950E1CE2068B00A23401 /* Common */,
 				A5FF94E41CE1CFDC00A23401 /* Public */,
 				A5FF94E71CE1D02400A23401 /* Observers */,
 				A5FF94DD1CE1B63B00A23401 /* VVMBindPath.h */,
@@ -137,6 +139,14 @@
 				A5FF950A1CE202BB00A23401 /* VVMUISliderObserver.m */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		A5FF950E1CE2068B00A23401 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A5FF95101CE2085500A23401 /* VVMLogger.h */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +306,7 @@
 		A5FF94A91CDC5D4F00A23401 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -307,6 +318,7 @@
 		A5FF94AA1CDC5D4F00A23401 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
