@@ -46,6 +46,26 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.staticText = @"Sample Static Text Update By Time";
     });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.booleanValue = TRUE;
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.dynamicValue = 80;
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.pickerData = @[
+                            @"NewValue1",
+                            @"NewValue2",
+                            @"NewValue3",
+                            @"NewValue4",
+                            @"NewValue5",
+                            @"NewValue6",
+                            @"NewValue7"
+                            ];
+    });
 }
 
 

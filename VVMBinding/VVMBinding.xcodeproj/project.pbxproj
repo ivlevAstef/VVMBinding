@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A532A8921CE2FBC30099B531 /* VVMObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A532A8911CE2FBC30099B531 /* VVMObserver.m */; };
+		A532A8981CE304020099B531 /* VVMUISwitchReverseObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A532A8971CE304020099B531 /* VVMUISwitchReverseObserver.m */; };
+		A532A89B1CE308B30099B531 /* VVMUISliderReverseObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A532A89A1CE308B30099B531 /* VVMUISliderReverseObserver.m */; };
 		A5FF94A51CDC5D4F00A23401 /* VVMBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94A41CDC5D4F00A23401 /* VVMBinding.m */; };
 		A5FF94D71CDDBD6B00A23401 /* VVMObserverBind.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94D61CDDBD6B00A23401 /* VVMObserverBind.m */; };
 		A5FF94DF1CE1B63B00A23401 /* VVMBindPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94DE1CE1B63B00A23401 /* VVMBindPath.m */; };
@@ -39,6 +41,10 @@
 /* Begin PBXFileReference section */
 		A532A8901CE2FBC30099B531 /* VVMObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMObserver.h; sourceTree = "<group>"; };
 		A532A8911CE2FBC30099B531 /* VVMObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMObserver.m; sourceTree = "<group>"; };
+		A532A8961CE304020099B531 /* VVMUISwitchReverseObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMUISwitchReverseObserver.h; sourceTree = "<group>"; };
+		A532A8971CE304020099B531 /* VVMUISwitchReverseObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMUISwitchReverseObserver.m; sourceTree = "<group>"; };
+		A532A8991CE308B30099B531 /* VVMUISliderReverseObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMUISliderReverseObserver.h; sourceTree = "<group>"; };
+		A532A89A1CE308B30099B531 /* VVMUISliderReverseObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMUISliderReverseObserver.m; sourceTree = "<group>"; };
 		A5FF949F1CDC5D4F00A23401 /* libVVMBinding.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVVMBinding.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FF94A41CDC5D4F00A23401 /* VVMBinding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VVMBinding.m; sourceTree = "<group>"; };
 		A5FF94D51CDDBD6B00A23401 /* VVMObserverBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMObserverBind.h; sourceTree = "<group>"; };
@@ -138,8 +144,12 @@
 				A5FF95061CE201A700A23401 /* VVMUITextFieldObserver.m */,
 				A5FF95031CE201A700A23401 /* VVMUISwitchObserver.h */,
 				A5FF95041CE201A700A23401 /* VVMUISwitchObserver.m */,
+				A532A8961CE304020099B531 /* VVMUISwitchReverseObserver.h */,
+				A532A8971CE304020099B531 /* VVMUISwitchReverseObserver.m */,
 				A5FF95091CE202BB00A23401 /* VVMUISliderObserver.h */,
 				A5FF950A1CE202BB00A23401 /* VVMUISliderObserver.m */,
+				A532A8991CE308B30099B531 /* VVMUISliderReverseObserver.h */,
+				A532A89A1CE308B30099B531 /* VVMUISliderReverseObserver.m */,
 				A5FF95111CE2F2F700A23401 /* VVMUIPickerDataSourceObserver.h */,
 				A5FF95121CE2F2F700A23401 /* VVMUIPickerDataSourceObserver.m */,
 			);
@@ -218,9 +228,11 @@
 				A5FF94ED1CE1D05C00A23401 /* VVMObserverFabric.m in Sources */,
 				A5FF94D71CDDBD6B00A23401 /* VVMObserverBind.m in Sources */,
 				A5FF94A51CDC5D4F00A23401 /* VVMBinding.m in Sources */,
+				A532A8981CE304020099B531 /* VVMUISwitchReverseObserver.m in Sources */,
 				A532A8921CE2FBC30099B531 /* VVMObserver.m in Sources */,
 				A5FF950B1CE202BB00A23401 /* VVMUISliderObserver.m in Sources */,
 				A5FF94DF1CE1B63B00A23401 /* VVMBindPath.m in Sources */,
+				A532A89B1CE308B30099B531 /* VVMUISliderReverseObserver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
