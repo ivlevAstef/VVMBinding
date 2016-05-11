@@ -6,10 +6,10 @@
 //  Copyright © 2016 Alexander Ivlev. All rights reserved.
 //
 
-#import "VVMObserverBind.h"
+#import "VVMObserver.h"
 #import <UIKit/UIKit.h>
 
-@interface VVMUITextFieldObserver : NSObject
+@interface VVMUITextFieldObserver : VVMObserver
 
 - (id)initByBind:(VVMObserverBind*)bind UseTextField:(UITextField*)textField;
 

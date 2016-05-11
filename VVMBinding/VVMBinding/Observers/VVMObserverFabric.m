@@ -9,23 +9,17 @@
 #import "VVMObserverFabric.h"
 #import "VVMLogger.h"
 
-#import "VVMInitialObserver.h"
-
 #import "VVMKVObserver.h"
 
 #import "VVMUITextFieldObserver.h"
 #import "VVMUISwitchObserver.h"
 #import "VVMUISliderObserver.h"
+#import "VVMUIPickerDataSourceObserver.h"
 
 @implementation VVMObserverFabric
 
 + (id)createByBind:(VVMObserverBind*)bind withInitial:(BOOL)initial {
-    if (initial) {
-        id __attribute__((unused)) unused = [[VVMInitialObserver alloc] initByBind:bind];
-        VVMLogDebug(@"setup initial value for bind:%@", bind);
-    }
-    
-    id observer = nil;
+    VVMObserver* observer = nil;
     
     if ([self path:bind.path isKindOf:[UITextField class] andValue:@"text"]) {
         UITextField* textField = [self path:bind.path getObjectKindOf:[UITextField class]];
@@ -43,9 +37,19 @@
         observer = [[VVMUISliderObserver alloc] initByBind:bind UseSlider:slider];
         VVMLogDebug(@"Create UISlider observer for bind:%@", bind);
         
+    } else if ([self path:bind.callPath isKindOf:[UIPickerView class] andValue:@"dataSource"]) {
+        UIPickerView* picker = [self path:bind.callPath getObjectKindOf:[UIPickerView class]];
+        observer = [[VVMUIPickerDataSourceObserver alloc] initByBind:bind UsePicker:picker];
+        VVMLogDebug(@"Create UIPickerView observer for bind:%@", bind);
+        
     } else {
         observer = [[VVMKVObserver alloc] initByBind:bind];
         VVMLogDebug(@"Create KVO observer for bind:%@", bind);
+    }
+    
+    if (initial && nil != observer) {
+        [observer initial];
+        VVMLogDebug(@"Initial bind:%@", bind);
     }
     
     bind.observer = observer;

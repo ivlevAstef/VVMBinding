@@ -9,7 +9,7 @@
 #import "SampleViewController.h"
 #import "VVMBinding/VVMBinding.h"
 
-@interface SampleViewController ()
+@interface SampleViewController () <UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel* sampleLabel;
 @property (weak, nonatomic) IBOutlet UITextField* sampleTextField;
@@ -68,8 +68,16 @@
     
     VVMBind(self, sampleSwitch.on, Both, From, viewModel, booleanValue);
     
+    self.samplePickerView.delegate = self;
+    VVMBind(self, samplePickerView.dataSource, From, From, viewModel, pickerData);
+}
+
+- (nullable NSString *)pickerView:(UIPickerView*)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    if (self.samplePickerView.numberOfComponents > 1) {
+        return [self.viewModel.pickerData[component][row] stringValue];
+    }
     
-    //VVMBind(self, samplePickerView.dataSource, Both, viewModel, pickerData);
+    return self.viewModel.pickerData[row];
 }
 
 - (IBAction)close:(id)sender {

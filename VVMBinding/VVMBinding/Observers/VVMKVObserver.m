@@ -7,6 +7,8 @@
 //
 
 #import "VVMKVObserver.h"
+#import "VVMLogger.h"
+
 #import <objc/runtime.h>
 #import <libkern/OSAtomic.h>
 
@@ -17,19 +19,15 @@ static volatile int32_t isObserved = FALSE;
 @property (nonatomic, unsafe_unretained) id observeObject;
 @property (nonatomic, copy) id observeKeyPath;
 
-@property (nonatomic, weak) VVMObserverBind* bind;
-
 @end
 
 @implementation VVMKVObserver
 
 - (id)initByBind:(VVMObserverBind*)bind {
-    assert(nil != bind);
+    VVMLogAssert(nil != bind);
     
-    self = [super init];
+    self = [super initByBind:bind];
     if (self) {
-        self.bind = bind;
-        
         self.observeObject = self.bind.path.parent;
         self.observeKeyPath = self.bind.path.keyPath;
         
@@ -55,7 +53,7 @@ static volatile int32_t isObserved = FALSE;
     }
     
     id newValue = [change objectForKey:NSKeyValueChangeNewKey];
-    [bind observerExecute:newValue];
+    [self update:newValue];
     
     isObserved = FALSE;
 }

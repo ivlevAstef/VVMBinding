@@ -7,22 +7,15 @@
 //
 
 #import "VVMUISwitchObserver.h"
-
-@interface VVMUISwitchObserver ()
-
-@property (nonatomic, weak) VVMObserverBind* bind;
-
-@end
+#import "VVMLogger.h"
 
 @implementation VVMUISwitchObserver
 
 - (id)initByBind:(VVMObserverBind*)bind UseSwitch:(UISwitch*)uiSwitch {
-    assert(nil != bind && nil != uiSwitch);
+    VVMLogAssert(nil != bind && nil != uiSwitch);
     
-    self = [super init];
-    if (self) {
-        self.bind = bind;
-        
+    self = [super initByBind:bind];
+    if (self) {        
         [uiSwitch addTarget:self action:@selector(changeValue:) forControlEvents:UIControlEventValueChanged];
     }
     
@@ -35,7 +28,7 @@
         return;
     }
     
-    [bind observerExecute:@([sender isOn])];
+    [self update:@([sender isOn])];
 }
 
 @end

@@ -13,8 +13,11 @@
 
 + (instancetype)createByPath:(VVMBindPath*)path withCallPath:(VVMBindPath*)callPath;
 
+@property (nonatomic, readonly) VVMBindPath* callPath;
 @property (nonatomic, strong) id observer;
 
-- (void)observerExecute:(id)newValue;
+- (BOOL)observerCheck:(id)newValue;
+- (id)observerTransformation:(id)newValue;
+- (void)observerUpdate:(id)newValue;
 
 @end

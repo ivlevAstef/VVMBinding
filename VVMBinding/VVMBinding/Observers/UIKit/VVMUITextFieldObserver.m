@@ -7,22 +7,15 @@
 //
 
 #import "VVMUITextFieldObserver.h"
-
-@interface VVMUITextFieldObserver ()
-
-@property (nonatomic, weak) VVMObserverBind* bind;
-
-@end
+#import "VVMLogger.h"
 
 @implementation VVMUITextFieldObserver
 
 - (id)initByBind:(VVMObserverBind*)bind UseTextField:(UITextField*)textField {
-    assert(nil != bind && nil != textField);
+    VVMLogAssert(nil != bind && nil != textField);
     
-    self = [super init];
+    self = [super initByBind:bind];
     if (self) {
-        self.bind = bind;
-        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(changeValue:)
                                                      name:UITextFieldTextDidChangeNotification
@@ -40,7 +33,7 @@
     }
     
     UITextField* textField = [notification object];
-    [bind observerExecute:textField.text];
+    [self update:textField.text];
 }
 
 @end

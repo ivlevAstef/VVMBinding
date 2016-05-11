@@ -7,22 +7,15 @@
 //
 
 #import "VVMUISliderObserver.h"
-
-@interface VVMUISliderObserver ()
-
-@property (nonatomic, weak) VVMObserverBind* bind;
-
-@end
+#import "VVMLogger.h"
 
 @implementation VVMUISliderObserver
 
 - (id)initByBind:(VVMObserverBind*)bind UseSlider:(UISlider*)slider {
-    assert(nil != bind && nil != slider);
+    VVMLogAssert(nil != bind && nil != slider);
     
-    self = [super init];
-    if (self) {
-        self.bind = bind;
-        
+    self = [super initByBind:bind];
+    if (self) {        
         [slider addTarget:self action:@selector(changeValue:) forControlEvents:UIControlEventValueChanged];
     }
     
@@ -35,7 +28,7 @@
         return;
     }
     
-    [bind observerExecute:@([sender value])];
+    [self update:@([sender value])];
 }
 
 @end

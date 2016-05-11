@@ -50,7 +50,13 @@
     return userMethod(newValue);
 }
 
-- (void)observerUpdate:(id)newValue On:(id)callObj {
+- (void)observerUpdate:(id)newValue {
+    __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
+    if (nil == callObj) {
+        VVMLogWarning(@"Observer can't found call object.");
+        return;
+    }
+    
     VVMBindMethodUpdated userMethod = self.updatedBlock;
     BOOL successful = TRUE;
     
@@ -63,19 +69,6 @@
     if (nil != userMethod) {
         VVMLogDebug(@"Call user method 'update' for:%@", self);
         userMethod(successful, newValue);
-    }
-}
-
-- (void)observerExecute:(id)newValue {
-    __strong typeof(self.callPath.parent) callObj = self.callPath.parent;
-    if (nil == callObj) {
-        VVMLogWarning(@"Observer can't found call object.");
-        return;
-    }
-    
-    if ([self observerCheck:newValue]) {
-        newValue = [self observerTransformation:newValue];
-        [self observerUpdate:newValue On:callObj];
     }
 }
 

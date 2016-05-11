@@ -6,9 +6,9 @@
 //  Copyright © 2016 Alexander Ivlev. All rights reserved.
 //
 
-#import "VVMObserverBind.h"
+#import "VVMObserver.h"
 
-@interface VVMKVObserver : NSObject
+@interface VVMKVObserver : VVMObserver
 
 - (id)initByBind:(VVMObserverBind*)bind;
 
