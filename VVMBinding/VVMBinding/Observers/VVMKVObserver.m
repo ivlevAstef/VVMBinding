@@ -53,6 +53,10 @@ static volatile int32_t isObserved = FALSE;
     }
     
     id newValue = [change objectForKey:NSKeyValueChangeNewKey];
+    if ([newValue isKindOfClass:[NSNull class]]) {
+        newValue = nil;
+    }
+    
     [self update:newValue];
     
     isObserved = FALSE;

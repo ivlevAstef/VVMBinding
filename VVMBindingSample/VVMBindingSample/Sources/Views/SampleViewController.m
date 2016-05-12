@@ -11,12 +11,17 @@
 
 @interface SampleViewController () <UIPickerViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel* sampleLabel;
-@property (weak, nonatomic) IBOutlet UITextField* sampleTextField;
-@property (weak, nonatomic) IBOutlet UISlider* sampleSlider;
-@property (weak, nonatomic) IBOutlet UISwitch* sampleSwitch;
-@property (weak, nonatomic) IBOutlet UIPickerView* samplePickerView;
-
+@property (weak, nonatomic) IBOutlet UILabel* sampleLabel;//OK
+@property (weak, nonatomic) IBOutlet UITextField* sampleTextField;//OK
+@property (weak, nonatomic) IBOutlet UISlider* sampleSlider;//OK
+@property (weak, nonatomic) IBOutlet UISwitch* sampleSwitch;//OK
+@property (weak, nonatomic) IBOutlet UIPickerView* samplePickerView;//Only get data from NSArray. Support is open question.
+@property (weak, nonatomic) IBOutlet UIImageView* sampleImageView;//Only UIImage. Needs support NSString and NSURL
+@property (weak, nonatomic) IBOutlet UIButton* sampleButton;//No
+@property (weak, nonatomic) IBOutlet UISegmentedControl* sampleSegments;//No
+@property (weak, nonatomic) IBOutlet UIProgressView* sampleProgress;//No
+@property (weak, nonatomic) IBOutlet UIStepper* sampleStepper;//No
+@property (weak, nonatomic) IBOutlet UISearchBar* sampleSearchBar;//No
 
 @property (nonatomic, strong) id<INavigator> navigator;
 @property (nonatomic, strong) SampleViewModel* viewModel;
@@ -67,6 +72,8 @@
     VVMBind(self, sampleSlider.value, Both, From, viewModel, dynamicValue);
     
     VVMBind(self, sampleSwitch.on, Both, From, viewModel, booleanValue);
+    
+    VVMBind(self, sampleImageView.image, From, From, viewModel, image);
     
     self.samplePickerView.delegate = self;
     VVMBind(self, samplePickerView.dataSource, From, From, viewModel, pickerData);

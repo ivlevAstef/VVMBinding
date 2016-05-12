@@ -22,5 +22,9 @@
 @property (assign, nonatomic) BOOL booleanValue;
 @property (strong, nonatomic) NSArray* pickerData;
 
+@property (strong, nonatomic) UIImage* image;
+
+@property (strong, nonatomic) NSString* close;
+
 @end
 
