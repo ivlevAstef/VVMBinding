@@ -64,18 +64,18 @@
         return;
     }
     
-    newValue = [self.bind observerTransformation:newValue];
-    
-    if (![newValue isKindOfClass:[NSArray class]]) {
-        VVMLogError(@"Setup NSArray for UIPicker data.");
-        return;
-    }
-    
-    VVMLogDebug(@"Update UIPicker data to:%@", newValue);
-    
-    self.isComponents = [self arrayIsContaintsSubArray:newValue];
-    self.data = newValue;
-    [self.picker reloadAllComponents];
+    [self.bind observerTransformation:newValue callback:^(id newValue) {
+        if (![newValue isKindOfClass:[NSArray class]]) {
+            VVMLogError(@"Setup NSArray for UIPicker data.");
+            return;
+        }
+        
+        VVMLogDebug(@"Update UIPicker data to:%@", newValue);
+        
+        self.isComponents = [self arrayIsContaintsSubArray:newValue];
+        self.data = newValue;
+        [self.picker reloadAllComponents];
+    }];
 }
 
 @end

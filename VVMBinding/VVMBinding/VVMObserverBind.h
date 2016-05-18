@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "VVMBind.h"
 
+typedef void (^VVMObserverBindTransformationCallback)(id newValue);
+
 @interface VVMObserverBind : VVMBind
 
 + (instancetype)createByPath:(VVMBindPath*)path withCallPath:(VVMBindPath*)callPath;
@@ -17,7 +19,7 @@
 @property (nonatomic, strong) id observer;
 
 - (BOOL)observerCheck:(id)newValue;
-- (id)observerTransformation:(id)newValue;
+- (void)observerTransformation:(id)newValue callback:(VVMObserverBindTransformationCallback)callback;
 - (void)observerUpdate:(id)newValue;
 
 @end

@@ -62,6 +62,8 @@
         NSLog(@"Sample label Updated %@ with value:%@", success ? @"success" : @"failed", newValue);
     }];
     
+    [VVMBindObj(self, sampleImageView.image) transformation:[VVMTransformation NSStringToUIImage] priority:VVMPriority_Default];
+    
     VVMBind(self, sampleLabel.text, From, From, viewModel, staticText);
     
     VVMBind(self, sampleTextField.text, Both, From, viewModel, editableText);
@@ -73,7 +75,7 @@
     
     VVMBind(self, sampleSwitch.on, Both, From, viewModel, booleanValue);
     
-    VVMBind(self, sampleImageView.image, From, From, viewModel, image);
+    VVMBind(self, sampleImageView.image, From, From, viewModel, imageName);
     
     self.samplePickerView.delegate = self;
     VVMBind(self, samplePickerView.dataSource, From, From, viewModel, pickerData);

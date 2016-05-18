@@ -19,9 +19,11 @@
 
 @property (nonatomic, readonly) VVMBindPath* path;
 
-@property (atomic, copy) VVMBindMethodCheck checkBlock;
-@property (atomic, copy) VVMBindMethodTransformation transformationBlock;
-@property (atomic, copy) VVMBindMethodUpdated updatedBlock;
+@property (atomic, readonly) VVMBindMethodCheck checkBlock;
+@property (atomic, readonly) VVMBindMethodTransformation transformationBlock;
+@property (atomic, readonly) VVMBindMethodUpdated updatedBlock;
+
+@property (atomic, readonly) eVVMPriority priority;
 
 - (void)copyTo:(VVMBind*)object;
 

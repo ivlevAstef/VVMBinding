@@ -16,6 +16,12 @@ static char sVVMBindAssociationKey = 0;
 @property (nonatomic, strong) VVMBindPath* path;
 @property (nonatomic, assign) NSMutableSet* associations;
 
+@property (atomic, copy) VVMBindMethodCheck checkBlock;
+@property (atomic, copy) VVMBindMethodTransformation transformationBlock;
+@property (atomic, copy) VVMBindMethodUpdated updatedBlock;
+
+@property (atomic, assign) eVVMPriority priority;
+
 @end
 
 @implementation VVMBind
@@ -64,6 +70,12 @@ static char sVVMBindAssociationKey = 0;
 
 - (void)transformation:(VVMBindMethodTransformation)transformationBlock {
     self.transformationBlock = transformationBlock;
+    self.priority = VVMPriority_Runtime;
+}
+
+- (void)transformation:(VVMBindMethodTransformation)transformationBlock priority:(eVVMPriority)priority {
+    self.transformationBlock = transformationBlock;
+    self.priority = priority;
 }
 
 - (void)updated:(VVMBindMethodUpdated)updatedBlock {
@@ -75,6 +87,7 @@ static char sVVMBindAssociationKey = 0;
     
     object.checkBlock = self.checkBlock;
     object.transformationBlock = self.transformationBlock;
+    object.priority = self.priority;
     object.updatedBlock = self.updatedBlock;
 }
 

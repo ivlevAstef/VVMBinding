@@ -40,14 +40,27 @@
     return userMethod(newValue);
 }
 
-- (id)observerTransformation:(id)newValue {
+- (void)observerTransformation:(id)newValue callback:(VVMObserverBindTransformationCallback)callback {
+    VVMLogAssert(nil != callback);
+    
     VVMBindMethodTransformation userMethod = self.transformationBlock;
     if (nil == userMethod) {
-        return newValue;
+        callback(newValue);
+        return;
     }
     
-    VVMLogDebug(@"Call user method 'transformation' for:%@", self);
-    return userMethod(newValue);
+    if (VVMPriority_Runtime == self.priority) {
+        VVMLogDebug(@"Call user method 'transformation' for:%@", self);
+        callback(userMethod(newValue));
+    } else {
+        dispatch_async(dispatch_get_global_queue(self.priority, 0), ^{
+            VVMLogDebug(@"Call user method 'transformation' for:%@", self);
+            id newTransformValue = userMethod(newValue);
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                callback(newTransformValue);
+            });
+        });
+    }
 }
 
 - (void)observerUpdate:(id)newValue {

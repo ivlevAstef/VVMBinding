@@ -45,8 +45,9 @@
     VVMLogAssert(nil != self.bind);
     
     if ([self.bind observerCheck:newValue]) {
-        newValue = [self.bind observerTransformation:newValue];
-        [self.bind observerUpdate:newValue];
+        [self.bind observerTransformation:newValue callback:^(id newValue) {
+           [self.bind observerUpdate:newValue]; 
+        }];
     }
 }
 
