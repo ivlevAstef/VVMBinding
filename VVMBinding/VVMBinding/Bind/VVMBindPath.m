@@ -38,15 +38,18 @@
 }
 
 - (id)vvmObjectKindOfClass:(Class)aClass {
-  NSArray<NSString*>* separatedPath = [self.keyPath componentsSeparatedByString:@"."];
+    NSArray<NSString*>* separatedPath = [self.keyPath componentsSeparatedByString:@"."];
   
-  id iter = self.parent;
-  for (NSString* subpath in separatedPath) {
-    if ([iter isKindOfClass:aClass]) {
-      return iter;
+    id iter = self.parent;
+    for (NSUInteger index = 0; index <=separatedPath.count; index++) {
+        if ([iter isKindOfClass:aClass]) {
+            return iter;
+        }
+        
+        if (index < separatedPath.count) {
+            iter = [iter valueForKey:[separatedPath objectAtIndex:index]];
+        }
     }
-    iter = [iter valueForKey:subpath];
-  }
   
   return nil;
 }
@@ -56,24 +59,22 @@
 }
 
 - (BOOL)vvmIsKindOfClass:(Class)aClass AndValue:(NSString*)valuePath {
-  NSArray<NSString*>* separatedPath = [self.keyPath componentsSeparatedByString:@"."];
-  
-  id iter = self.parent;
-  for(NSUInteger index = 0; index < separatedPath.count; index++) {
-    if ([iter isKindOfClass:aClass]) {
-      NSArray<NSString*>* separatedPathTail = [separatedPath subarrayWithRange:NSMakeRange(index, [separatedPath count] - index)];
-      
-      if ([valuePath isEqualToString:[separatedPathTail componentsJoinedByString:@"."]]) {
-        return TRUE;
-      }
-      
-      return FALSE;
-    }
+    NSArray<NSString*>* separatedPath = [self.keyPath componentsSeparatedByString:@"."];
+
+    id iter = self.parent;
+    for(NSUInteger index = 0; index <= separatedPath.count; index++) {
+        if ([iter isKindOfClass:aClass]) {
+            NSArray<NSString*>* separatedPathTail = [separatedPath subarrayWithRange:NSMakeRange(index, [separatedPath count] - index)];
+
+            return [valuePath isEqualToString:[separatedPathTail componentsJoinedByString:@"."]];
+        }
     
-    iter = [iter valueForKey:[separatedPath objectAtIndex:index]];
-  }
-  
-  return FALSE;
+        if (index < separatedPath.count) {
+            iter = [iter valueForKey:[separatedPath objectAtIndex:index]];
+        }
+    }
+
+    return FALSE;
 }
 
 @end
