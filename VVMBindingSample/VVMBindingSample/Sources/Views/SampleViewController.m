@@ -16,10 +16,10 @@
 @property (weak, nonatomic) IBOutlet UISlider* sampleSlider;//OK
 @property (weak, nonatomic) IBOutlet UISwitch* sampleSwitch;//OK
 @property (weak, nonatomic) IBOutlet UIPickerView* samplePickerView;//Only get data from NSArray. Support is open question.
-@property (weak, nonatomic) IBOutlet UIImageView* sampleImageView;//Only UIImage. Needs support NSString and NSURL
-@property (weak, nonatomic) IBOutlet UIButton* sampleButton;//No
-@property (weak, nonatomic) IBOutlet UISegmentedControl* sampleSegments;//No
+@property (weak, nonatomic) IBOutlet UIImageView* sampleImageView;//OK. Support UIImage and NSString.
 @property (weak, nonatomic) IBOutlet UIProgressView* sampleProgress;//No
+@property (weak, nonatomic) IBOutlet UISegmentedControl* sampleSegments;//No
+@property (weak, nonatomic) IBOutlet UIButton* sampleButton;//No
 @property (weak, nonatomic) IBOutlet UIStepper* sampleStepper;//No
 @property (weak, nonatomic) IBOutlet UISearchBar* sampleSearchBar;//No
 
@@ -61,8 +61,6 @@
     [VVMBindObj(self, sampleLabel.text) updated:^void(BOOL success, id newValue) {
         NSLog(@"Sample label Updated %@ with value:%@", success ? @"success" : @"failed", newValue);
     }];
-    
-    [VVMBindObj(self, sampleImageView.image) transformation:[VVMTransformation NSStringToUIImage] priority:VVMPriority_Default];
     
     VVMBind(self, sampleLabel.text, From, From, viewModel, staticText);
     

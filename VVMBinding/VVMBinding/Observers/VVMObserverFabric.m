@@ -17,6 +17,7 @@
 #import "VVMUISliderObserver.h"
 #import "VVMUISliderReverseObserver.h"
 #import "VVMUIPickerDataSourceObserver.h"
+#import "VVMUIImageViewReverseObserver.h"
 
 @implementation VVMObserverFabric
 
@@ -27,6 +28,7 @@
     observer = observer ?: [self checkCreateSwitchObserverByBind:bind];
     observer = observer ?: [self checkCreateSliderObserverByBind:bind];
     observer = observer ?: [self checkCreatePickerObserverByBind:bind];
+    observer = observer ?: [self checkCreateImageViewObserverByBind:bind];
     
     observer = observer ?: [self createKVObserverByBind:bind];
     
@@ -41,6 +43,7 @@
 
 ////////////// Check/Create methods
 
+//////// UITextField
 + (BOOL)checkOnTextFieldByBindPath:(VVMBindPath*)bindPath {
     return [self path:bindPath isKindOf:[UITextField class] andValue:@"text"];
 }
@@ -55,6 +58,7 @@
     return nil;
 }
 
+//////// UISwitch
 + (BOOL)checkOnSwitchByBindPath:(VVMBindPath*)bindPath {
     return [self path:bindPath isKindOf:[UISwitch class] andValue:@"on"] ||
            [self path:bindPath isKindOf:[UISwitch class] andValue:@"isOn"];
@@ -78,6 +82,7 @@
     return nil;
 }
 
+//////// UISlider
 + (BOOL)checkOnSliderByBindPath:(VVMBindPath*)bindPath {
     return [self path:bindPath isKindOf:[UISlider class] andValue:@"value"];
 }
@@ -99,13 +104,14 @@
     return nil;
 }
 
+//////// UIPickerView
 + (BOOL)checkOnPickerByBindPath:(VVMBindPath*)bindPath {
     return [self path:bindPath isKindOf:[UIPickerView class] andValue:@"dataSource"];
 }
 + (id)checkCreatePickerObserverByBind:(VVMObserverBind*)bind {
     if ([self checkOnPickerByBindPath:bind.callPath]) {
         UIPickerView* picker = [self path:bind.callPath getObjectKindOf:[UIPickerView class]];
-        VVMLogDebug(@"Create UIPickerView observer for bind:%@", bind);
+        VVMLogDebug(@"Create UIPickerView reverse observer for bind:%@", bind);
         
         return [[VVMUIPickerDataSourceObserver alloc] initByBind:bind UsePicker:picker];
     }
@@ -113,6 +119,22 @@
     return nil;
 }
 
+//////// UIImageView
++ (BOOL)checkOnImageViewByBindPath:(VVMBindPath*)bindPath {
+  return [self path:bindPath isKindOf:[UIImageView class] andValue:@"image"];
+}
++ (id)checkCreateImageViewObserverByBind:(VVMObserverBind*)bind {
+  if ([self checkOnImageViewByBindPath:bind.callPath]) {
+    UIImageView* imageView = [self path:bind.callPath getObjectKindOf:[UIImageView class]];
+    VVMLogDebug(@"Create UIImageView reverse observer for bind:%@", bind);
+    
+    return [[VVMUIImageViewReverseObserver alloc] initByBind:bind UseImageView:imageView];
+  }
+  
+  return nil;
+}
+
+//////// Key Value Observer
 + (id)createKVObserverByBind:(VVMObserverBind*)bind {
     VVMLogDebug(@"Create KVO observer for bind:%@", bind);
     
