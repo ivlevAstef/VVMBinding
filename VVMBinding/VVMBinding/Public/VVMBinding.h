@@ -36,6 +36,16 @@ do { \
     [VVMBinding bind:PARENT keyPath:@#OBJ direction:eVVMBindingDirection_##DIRECTION initial:eVVMBindingInitial_##INITIAL with:PARENT2 keyPath:@#OBJ2]; \
 } while(0)
 
+#define VVMBindRead(PARENT, OBJ, PARENT2, OBJ2) VVMBind(PARENT, OBJ, From, From, PARENT2, OBJ2)
+#define VVMBindReadWithoutInit(PARENT, OBJ, PARENT2, OBJ2) VVMBind(PARENT, OBJ, From, Nothing, PARENT2, OBJ2)
+
+#define VVMBindWrite(PARENT, OBJ, PARENT2, OBJ2) VVMBind(PARENT, OBJ, To, To, PARENT2, OBJ2)
+#define VVMBindWriteWithoutInit(PARENT, OBJ, PARENT2, OBJ2) VVMBind(PARENT, OBJ, To, Nothing, PARENT2, OBJ2)
+
+#define VVMBindReadWrite(PARENT, OBJ, PARENT2, OBJ2) VVMBind(PARENT, OBJ, Both, From, PARENT2, OBJ2)
+#define VVMBindReadWriteReverseInit(PARENT, OBJ, PARENT2, OBJ2) VVMBind(PARENT, OBJ, Both, To, PARENT2, OBJ2)
+#define VVMBindReadWriteWithoutInit(PARENT, OBJ, PARENT2, OBJ2) VVMBind(PARENT, OBJ, Both, Nothing, PARENT2, OBJ2)
+
 #define VVMBindObj(PARENT, OBJ) ({ \
     typeof(PARENT.OBJ) __attribute__((unused)) check = PARENT.OBJ; \
     [VVMBinding bindObject:PARENT keyPath:@#OBJ]; \

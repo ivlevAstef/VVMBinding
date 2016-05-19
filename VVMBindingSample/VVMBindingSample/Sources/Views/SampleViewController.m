@@ -62,21 +62,21 @@
         NSLog(@"Sample label Updated %@ with value:%@", success ? @"success" : @"failed", newValue);
     }];
     
-    VVMBind(self, sampleLabel.text, From, From, viewModel, staticText);
+    VVMBindRead(self, sampleLabel.text, viewModel, staticText);
     
-    VVMBind(self, sampleTextField.text, Both, From, viewModel, editableText);
-    VVMBind(self, sampleTextField.placeholder, From, From, viewModel, editableTextPlaceholder);
+    VVMBindReadWrite(self, sampleTextField.text, viewModel, editableText);
+    VVMBindRead(self, sampleTextField.placeholder, viewModel, editableTextPlaceholder);
     
-    VVMBind(self, sampleSlider.minimumValue, From, From, viewModel, dynamicValueMin);
-    VVMBind(self, sampleSlider.maximumValue, From, From, viewModel, dynamicValueMax);
-    VVMBind(self, sampleSlider.value, Both, From, viewModel, dynamicValue);
+    VVMBindRead(self, sampleSlider.minimumValue, viewModel, dynamicValueMin);
+    VVMBindRead(self, sampleSlider.maximumValue, viewModel, dynamicValueMax);
+    VVMBindReadWrite(self, sampleSlider.value, viewModel, dynamicValue);
     
-    VVMBind(self, sampleSwitch.on, Both, From, viewModel, booleanValue);
+    VVMBindReadWrite(self, sampleSwitch.on, viewModel, booleanValue);
     
-    VVMBind(self, sampleImageView.image, From, From, viewModel, imageName);
+    VVMBindRead(self, sampleImageView.image, viewModel, imageName);
     
     self.samplePickerView.delegate = self;
-    VVMBind(self, samplePickerView.dataSource, From, From, viewModel, pickerData);
+    VVMBindRead(self, samplePickerView.dataSource, viewModel, pickerData);
 }
 
 - (nullable NSString *)pickerView:(UIPickerView*)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {

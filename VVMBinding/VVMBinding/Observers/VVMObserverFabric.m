@@ -45,11 +45,11 @@
 
 //////// UITextField
 + (BOOL)checkOnTextFieldByBindPath:(VVMBindPath*)bindPath {
-    return [self path:bindPath isKindOf:[UITextField class] andValue:@"text"];
+    return [bindPath vvmIsKindOfClass:[UITextField class] AndValue:@"text"];
 }
 + (id)checkCreateTextFieldObserverByBind:(VVMObserverBind*)bind {
     if ([self checkOnTextFieldByBindPath:bind.path]) {
-        UITextField* textField = [self path:bind.path getObjectKindOf:[UITextField class]];
+        UITextField* textField = [bind.path vvmObjectKindOfClass:[UITextField class]];
         VVMLogDebug(@"Create UITextField observer for bind:%@", bind);
         
         return [[VVMUITextFieldObserver alloc] initByBind:bind UseTextField:textField];
@@ -60,12 +60,12 @@
 
 //////// UISwitch
 + (BOOL)checkOnSwitchByBindPath:(VVMBindPath*)bindPath {
-    return [self path:bindPath isKindOf:[UISwitch class] andValue:@"on"] ||
-           [self path:bindPath isKindOf:[UISwitch class] andValue:@"isOn"];
+    return [bindPath vvmIsKindOfClass:[UISwitch class] AndValue:@"on"] ||
+           [bindPath vvmIsKindOfClass:[UISwitch class] AndValue:@"isOn"];
 }
 + (id)checkCreateSwitchObserverByBind:(VVMObserverBind*)bind {
     if ([self checkOnSwitchByBindPath:bind.path]) {
-        UISwitch* uiSwitch = [self path:bind.path getObjectKindOf:[UISwitch class]];
+        UISwitch* uiSwitch = [bind.path vvmObjectKindOfClass:[UISwitch class]];
         VVMLogDebug(@"Create UISwitch observer for bind:%@", bind);
         
         return [[VVMUISwitchObserver alloc] initByBind:bind UseSwitch:uiSwitch];
@@ -73,7 +73,7 @@
     }
     
     if ([self checkOnSwitchByBindPath:bind.callPath]) {
-        UISwitch* uiSwitch = [self path:bind.callPath getObjectKindOf:[UISwitch class]];
+        UISwitch* uiSwitch = [bind.callPath vvmObjectKindOfClass:[UISwitch class]];
         VVMLogDebug(@"Create UISwitch reverse observer for bind:%@", bind);
         
         return [[VVMUISwitchReverseObserver alloc] initByBind:bind UseSwitch:uiSwitch];
@@ -84,18 +84,18 @@
 
 //////// UISlider
 + (BOOL)checkOnSliderByBindPath:(VVMBindPath*)bindPath {
-    return [self path:bindPath isKindOf:[UISlider class] andValue:@"value"];
+    return [bindPath vvmIsKindOfClass:[UISlider class] AndValue:@"value"];
 }
 + (id)checkCreateSliderObserverByBind:(VVMObserverBind*)bind {
     if ([self checkOnSliderByBindPath:bind.path]) {
-        UISlider* slider = [self path:bind.path getObjectKindOf:[UISlider class]];
+        UISlider* slider = [bind.path vvmObjectKindOfClass:[UISlider class]];
         VVMLogDebug(@"Create UISlider observer for bind:%@", bind);
         
         return [[VVMUISliderObserver alloc] initByBind:bind UseSlider:slider];
     }
     
     if ([self checkOnSliderByBindPath:bind.callPath]) {
-        UISlider* slider = [self path:bind.callPath getObjectKindOf:[UISlider class]];
+        UISlider* slider = [bind.callPath vvmObjectKindOfClass:[UISlider class]];
         VVMLogDebug(@"Create UISlider reverse observer for bind:%@", bind);
         
         return [[VVMUISliderReverseObserver alloc] initByBind:bind UseSlider:slider];
@@ -106,11 +106,11 @@
 
 //////// UIPickerView
 + (BOOL)checkOnPickerByBindPath:(VVMBindPath*)bindPath {
-    return [self path:bindPath isKindOf:[UIPickerView class] andValue:@"dataSource"];
+    return [bindPath vvmIsKindOfClass:[UIPickerView class] AndValue:@"dataSource"];
 }
 + (id)checkCreatePickerObserverByBind:(VVMObserverBind*)bind {
     if ([self checkOnPickerByBindPath:bind.callPath]) {
-        UIPickerView* picker = [self path:bind.callPath getObjectKindOf:[UIPickerView class]];
+        UIPickerView* picker = [bind.callPath vvmObjectKindOfClass:[UIPickerView class]];
         VVMLogDebug(@"Create UIPickerView reverse observer for bind:%@", bind);
         
         return [[VVMUIPickerDataSourceObserver alloc] initByBind:bind UsePicker:picker];
@@ -121,11 +121,11 @@
 
 //////// UIImageView
 + (BOOL)checkOnImageViewByBindPath:(VVMBindPath*)bindPath {
-  return [self path:bindPath isKindOf:[UIImageView class] andValue:@"image"];
+  return [bindPath vvmIsKindOfClass:[UIImageView class] AndValue:@"image"];
 }
 + (id)checkCreateImageViewObserverByBind:(VVMObserverBind*)bind {
   if ([self checkOnImageViewByBindPath:bind.callPath]) {
-    UIImageView* imageView = [self path:bind.callPath getObjectKindOf:[UIImageView class]];
+    UIImageView* imageView = [bind.callPath vvmObjectKindOfClass:[UIImageView class]];
     VVMLogDebug(@"Create UIImageView reverse observer for bind:%@", bind);
     
     return [[VVMUIImageViewReverseObserver alloc] initByBind:bind UseImageView:imageView];
@@ -139,43 +139,6 @@
     VVMLogDebug(@"Create KVO observer for bind:%@", bind);
     
     return [[VVMKVObserver alloc] initByBind:bind];
-}
-
-////////////// Support methods
-
-+ (id)path:(VVMBindPath*)path getObjectKindOf:(Class)class {
-    NSArray<NSString*>* separatedPath = [path.keyPath componentsSeparatedByString:@"."];
-    
-    id iter = path.parent;
-    for (NSString* subpath in separatedPath) {
-        if ([iter isKindOfClass:class]) {
-            return iter;
-        }
-        iter = [iter valueForKey:subpath];
-    }
-    
-    return nil;
-}
-
-+ (BOOL)path:(VVMBindPath*)path isKindOf:(Class)class andValue:(NSString*)value {
-    NSArray<NSString*>* separatedPath = [path.keyPath componentsSeparatedByString:@"."];
-    
-    id iter = path.parent;
-    for(NSUInteger index = 0; index < separatedPath.count; index++) {
-        if ([iter isKindOfClass:class]) {
-            NSArray<NSString*>* separatedPathTail = [separatedPath subarrayWithRange:NSMakeRange(index, [separatedPath count] - index)];
-            
-            if ([value isEqualToString:[separatedPathTail componentsJoinedByString:@"."]]) {
-                return TRUE;
-            }
-            
-            return FALSE;
-        }
-        
-        iter = [iter valueForKey:[separatedPath objectAtIndex:index]];
-    }
-    
-    return FALSE;
 }
 
 @end

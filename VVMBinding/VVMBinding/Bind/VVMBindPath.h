@@ -15,4 +15,8 @@
 
 + (VVMBindPath*)path:(id)parent :(NSString*)keyPath;
 
+- (id)vvmObjectKindOfClass:(Class)aClass;
+- (BOOL)vvmIsKindOfClass:(Class)aClass;
+- (BOOL)vvmIsKindOfClass:(Class)aClass AndValue:(NSString*)valuePath;
+
 @end

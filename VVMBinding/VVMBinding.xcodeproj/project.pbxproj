@@ -11,13 +11,13 @@
 		A532A8981CE304020099B531 /* VVMUISwitchReverseObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A532A8971CE304020099B531 /* VVMUISwitchReverseObserver.m */; };
 		A532A89B1CE308B30099B531 /* VVMUISliderReverseObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A532A89A1CE308B30099B531 /* VVMUISliderReverseObserver.m */; };
 		A54673961CED785F00B90192 /* VVMUIImageViewReverseObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A54673951CED785F00B90192 /* VVMUIImageViewReverseObserver.m */; };
+		A546739F1CED82CF00B90192 /* VVMBind.m in Sources */ = {isa = PBXBuildFile; fileRef = A546739A1CED82CF00B90192 /* VVMBind.m */; };
+		A54673A01CED82CF00B90192 /* VVMBindPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A546739C1CED82CF00B90192 /* VVMBindPath.m */; };
+		A54673A11CED82CF00B90192 /* VVMObserverBind.m in Sources */ = {isa = PBXBuildFile; fileRef = A546739E1CED82CF00B90192 /* VVMObserverBind.m */; };
 		A5B865EA1CEC4DDC0038DD11 /* VVMTransformation.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B865E91CEC4DDC0038DD11 /* VVMTransformation.m */; };
 		A5B865ED1CEC50980038DD11 /* IVVMBind.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5B865EC1CEC505B0038DD11 /* IVVMBind.h */; };
 		A5B865EE1CEC509C0038DD11 /* VVMTransformation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5B865EB1CEC50520038DD11 /* VVMTransformation.h */; };
 		A5FF94A51CDC5D4F00A23401 /* VVMBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94A41CDC5D4F00A23401 /* VVMBinding.m */; };
-		A5FF94D71CDDBD6B00A23401 /* VVMObserverBind.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94D61CDDBD6B00A23401 /* VVMObserverBind.m */; };
-		A5FF94DF1CE1B63B00A23401 /* VVMBindPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94DE1CE1B63B00A23401 /* VVMBindPath.m */; };
-		A5FF94E31CE1C56F00A23401 /* VVMBind.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94E21CE1C56F00A23401 /* VVMBind.m */; };
 		A5FF94EA1CE1D02400A23401 /* VVMKVObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94E91CE1D02400A23401 /* VVMKVObserver.m */; };
 		A5FF94ED1CE1D05C00A23401 /* VVMObserverFabric.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF94EC1CE1D05C00A23401 /* VVMObserverFabric.m */; };
 		A5FF94FC1CE1F77800A23401 /* VVMBinding.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5FF94E61CE1D01900A23401 /* VVMBinding.h */; };
@@ -51,17 +51,17 @@
 		A532A89A1CE308B30099B531 /* VVMUISliderReverseObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMUISliderReverseObserver.m; sourceTree = "<group>"; };
 		A54673941CED785F00B90192 /* VVMUIImageViewReverseObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMUIImageViewReverseObserver.h; sourceTree = "<group>"; };
 		A54673951CED785F00B90192 /* VVMUIImageViewReverseObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMUIImageViewReverseObserver.m; sourceTree = "<group>"; };
+		A54673991CED82CF00B90192 /* VVMBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMBind.h; sourceTree = "<group>"; };
+		A546739A1CED82CF00B90192 /* VVMBind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMBind.m; sourceTree = "<group>"; };
+		A546739B1CED82CF00B90192 /* VVMBindPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMBindPath.h; sourceTree = "<group>"; };
+		A546739C1CED82CF00B90192 /* VVMBindPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMBindPath.m; sourceTree = "<group>"; };
+		A546739D1CED82CF00B90192 /* VVMObserverBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMObserverBind.h; sourceTree = "<group>"; };
+		A546739E1CED82CF00B90192 /* VVMObserverBind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMObserverBind.m; sourceTree = "<group>"; };
 		A5B865E91CEC4DDC0038DD11 /* VVMTransformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMTransformation.m; sourceTree = "<group>"; };
 		A5B865EB1CEC50520038DD11 /* VVMTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVMTransformation.h; path = Public/VVMTransformation.h; sourceTree = "<group>"; };
 		A5B865EC1CEC505B0038DD11 /* IVVMBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVVMBind.h; path = Public/IVVMBind.h; sourceTree = "<group>"; };
 		A5FF949F1CDC5D4F00A23401 /* libVVMBinding.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVVMBinding.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FF94A41CDC5D4F00A23401 /* VVMBinding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VVMBinding.m; sourceTree = "<group>"; };
-		A5FF94D51CDDBD6B00A23401 /* VVMObserverBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMObserverBind.h; sourceTree = "<group>"; };
-		A5FF94D61CDDBD6B00A23401 /* VVMObserverBind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMObserverBind.m; sourceTree = "<group>"; };
-		A5FF94DD1CE1B63B00A23401 /* VVMBindPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMBindPath.h; sourceTree = "<group>"; };
-		A5FF94DE1CE1B63B00A23401 /* VVMBindPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMBindPath.m; sourceTree = "<group>"; };
-		A5FF94E11CE1C56F00A23401 /* VVMBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMBind.h; sourceTree = "<group>"; };
-		A5FF94E21CE1C56F00A23401 /* VVMBind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMBind.m; sourceTree = "<group>"; };
 		A5FF94E61CE1D01900A23401 /* VVMBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVMBinding.h; path = Public/VVMBinding.h; sourceTree = "<group>"; };
 		A5FF94E81CE1D02400A23401 /* VVMKVObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMKVObserver.h; sourceTree = "<group>"; };
 		A5FF94E91CE1D02400A23401 /* VVMKVObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMKVObserver.m; sourceTree = "<group>"; };
@@ -89,6 +89,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A54673981CED82CF00B90192 /* Bind */ = {
+			isa = PBXGroup;
+			children = (
+				A54673991CED82CF00B90192 /* VVMBind.h */,
+				A546739A1CED82CF00B90192 /* VVMBind.m */,
+				A546739B1CED82CF00B90192 /* VVMBindPath.h */,
+				A546739C1CED82CF00B90192 /* VVMBindPath.m */,
+				A546739D1CED82CF00B90192 /* VVMObserverBind.h */,
+				A546739E1CED82CF00B90192 /* VVMObserverBind.m */,
+			);
+			path = Bind;
+			sourceTree = "<group>";
+		};
 		A5FF94961CDC5D4F00A23401 = {
 			isa = PBXGroup;
 			children = (
@@ -108,15 +121,10 @@
 		A5FF94A11CDC5D4F00A23401 /* VVMBinding */ = {
 			isa = PBXGroup;
 			children = (
-				A5FF950E1CE2068B00A23401 /* Common */,
 				A5FF94E41CE1CFDC00A23401 /* Public */,
+				A5FF950E1CE2068B00A23401 /* Common */,
 				A5FF94E71CE1D02400A23401 /* Observers */,
-				A5FF94DD1CE1B63B00A23401 /* VVMBindPath.h */,
-				A5FF94DE1CE1B63B00A23401 /* VVMBindPath.m */,
-				A5FF94E11CE1C56F00A23401 /* VVMBind.h */,
-				A5FF94E21CE1C56F00A23401 /* VVMBind.m */,
-				A5FF94D51CDDBD6B00A23401 /* VVMObserverBind.h */,
-				A5FF94D61CDDBD6B00A23401 /* VVMObserverBind.m */,
+				A54673981CED82CF00B90192 /* Bind */,
 				A5FF94A41CDC5D4F00A23401 /* VVMBinding.m */,
 				A5B865E91CEC4DDC0038DD11 /* VVMTransformation.m */,
 			);
@@ -138,11 +146,11 @@
 			children = (
 				A5FF94EB1CE1D05C00A23401 /* VVMObserverFabric.h */,
 				A5FF94EC1CE1D05C00A23401 /* VVMObserverFabric.m */,
+				A532A8901CE2FBC30099B531 /* VVMObserver.h */,
+				A532A8911CE2FBC30099B531 /* VVMObserver.m */,
 				A5FF95021CE201A700A23401 /* UIKit */,
 				A5FF94E81CE1D02400A23401 /* VVMKVObserver.h */,
 				A5FF94E91CE1D02400A23401 /* VVMKVObserver.m */,
-				A532A8901CE2FBC30099B531 /* VVMObserver.h */,
-				A532A8911CE2FBC30099B531 /* VVMObserver.m */,
 			);
 			path = Observers;
 			sourceTree = "<group>";
@@ -233,19 +241,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5FF95081CE201A700A23401 /* VVMUITextFieldObserver.m in Sources */,
-				A5FF94E31CE1C56F00A23401 /* VVMBind.m in Sources */,
 				A5FF95071CE201A700A23401 /* VVMUISwitchObserver.m in Sources */,
+				A546739F1CED82CF00B90192 /* VVMBind.m in Sources */,
+				A54673A11CED82CF00B90192 /* VVMObserverBind.m in Sources */,
 				A5FF94EA1CE1D02400A23401 /* VVMKVObserver.m in Sources */,
 				A54673961CED785F00B90192 /* VVMUIImageViewReverseObserver.m in Sources */,
 				A5FF95131CE2F2F700A23401 /* VVMUIPickerDataSourceObserver.m in Sources */,
 				A5FF94ED1CE1D05C00A23401 /* VVMObserverFabric.m in Sources */,
-				A5FF94D71CDDBD6B00A23401 /* VVMObserverBind.m in Sources */,
 				A5FF94A51CDC5D4F00A23401 /* VVMBinding.m in Sources */,
 				A532A8981CE304020099B531 /* VVMUISwitchReverseObserver.m in Sources */,
 				A532A8921CE2FBC30099B531 /* VVMObserver.m in Sources */,
 				A5B865EA1CEC4DDC0038DD11 /* VVMTransformation.m in Sources */,
+				A54673A01CED82CF00B90192 /* VVMBindPath.m in Sources */,
 				A5FF950B1CE202BB00A23401 /* VVMUISliderObserver.m in Sources */,
-				A5FF94DF1CE1B63B00A23401 /* VVMBindPath.m in Sources */,
 				A532A89B1CE308B30099B531 /* VVMUISliderReverseObserver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
