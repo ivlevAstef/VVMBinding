@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView* samplePickerView;//OK. Only get data from NSArray.
 @property (weak, nonatomic) IBOutlet UIImageView* sampleImageView;//OK. Support UIImage and NSString.
 @property (weak, nonatomic) IBOutlet UIProgressView* sampleProgress;//OK. float and NSNumber
-@property (weak, nonatomic) IBOutlet UISegmentedControl* sampleSegments;//OK. Only get data from NSArray.
+@property (weak, nonatomic) IBOutlet UISegmentedControl* sampleSegments;//OK. Only get data from NSArray (NSString or UIImage)
 @property (weak, nonatomic) IBOutlet UIButton* sampleButton;//No
 @property (weak, nonatomic) IBOutlet UIStepper* sampleStepper;//No
 @property (weak, nonatomic) IBOutlet UISearchBar* sampleSearchBar;//No

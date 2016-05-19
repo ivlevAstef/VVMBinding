@@ -119,7 +119,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.segments = @[
                       @"Segment1",
-                      @"Segment2",
+                      [UIImage imageNamed:@"Test"],
                       @"Segment3",
                       @"Segment4",
                       ];
