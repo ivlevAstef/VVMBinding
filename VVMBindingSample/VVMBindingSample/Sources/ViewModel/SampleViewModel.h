@@ -10,21 +10,24 @@
 
 @interface SampleViewModel : NSObject
 
-@property (strong, nonatomic) NSString* staticText;
+@property (readonly, nonatomic) NSString* staticText;
 
 @property (strong, nonatomic) NSString* editableText;
-@property (strong, nonatomic) NSString* editableTextPlaceholder;
+@property (readonly, nonatomic) NSString* editableTextPlaceholder;
 
 @property (assign, nonatomic) float dynamicValue;
-@property (assign, nonatomic) float dynamicValueMin;
-@property (assign, nonatomic) float dynamicValueMax;
+@property (readonly, nonatomic) float dynamicValueMin;
+@property (readonly, nonatomic) float dynamicValueMax;
 
 @property (assign, nonatomic) BOOL booleanValue;
-@property (strong, nonatomic) NSArray* pickerData;
 
-@property (strong, nonatomic) NSString* imageName;
+@property (readonly, nonatomic) float progressValue;
 
-@property (strong, nonatomic) NSString* close;
+@property (readonly, nonatomic) NSArray* pickerData;
+
+@property (readonly, nonatomic) NSString* imageName;
+
+@property (readonly, nonatomic) NSString* close;
 
 @end
 

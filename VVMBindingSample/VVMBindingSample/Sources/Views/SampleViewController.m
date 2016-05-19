@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch* sampleSwitch;//OK
 @property (weak, nonatomic) IBOutlet UIPickerView* samplePickerView;//Only get data from NSArray. Support is open question.
 @property (weak, nonatomic) IBOutlet UIImageView* sampleImageView;//OK. Support UIImage and NSString.
-@property (weak, nonatomic) IBOutlet UIProgressView* sampleProgress;//No
+@property (weak, nonatomic) IBOutlet UIProgressView* sampleProgress;//OK
 @property (weak, nonatomic) IBOutlet UISegmentedControl* sampleSegments;//No
 @property (weak, nonatomic) IBOutlet UIButton* sampleButton;//No
 @property (weak, nonatomic) IBOutlet UIStepper* sampleStepper;//No
@@ -74,6 +74,8 @@
     VVMBindReadWrite(self, sampleSwitch.on, viewModel, booleanValue);
     
     VVMBindRead(self, sampleImageView.image, viewModel, imageName);
+    
+    VVMBindReadWrite(self, sampleProgress.progress, viewModel, progressValue);
     
     self.samplePickerView.delegate = self;
     VVMBindRead(self, samplePickerView.dataSource, viewModel, pickerData);
