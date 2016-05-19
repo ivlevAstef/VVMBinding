@@ -38,9 +38,15 @@ static const NSTimeInterval sSliderAnimationTime = 0.25;
     self.isInitial = FALSE;
 }
 
-- (void)update:(id)newValue {
+- (void)setValue:(NSNumber*)newValue {
     __strong typeof(self.slider) slider = self.slider;
     if (nil == slider) {
+        return;
+    }
+    
+    if (![newValue isKindOfClass:[NSNumber class]]) {
+        VVMLogError(@"VVM UISlider.value can't updated, because incorrect type.");
+        [self.bind observerNotify:NO withNewValue:newValue];
         return;
     }
     
@@ -49,10 +55,16 @@ static const NSTimeInterval sSliderAnimationTime = 0.25;
     if (animated) {
         [UIView animateWithDuration:sSliderAnimationTime animations:^{
             [slider setValue:[newValue floatValue] animated:YES];
+        } completion:^(BOOL finished) {
+            [self.bind observerNotify:YES withNewValue:newValue];
         }];
     } else {
         [slider setValue:[newValue floatValue] animated:NO];
+        [self.bind observerNotify:YES withNewValue:newValue];
     }
+    
+    
+    
 }
 
 @end

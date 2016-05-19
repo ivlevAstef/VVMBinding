@@ -17,5 +17,6 @@
 @property (nonatomic, readonly, weak) VVMObserverBind* bind;
 
 - (void)update:(id)newValue;
+- (void)setValue:(id)newValue;
 
 @end

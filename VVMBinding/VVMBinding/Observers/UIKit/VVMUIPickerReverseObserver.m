@@ -1,15 +1,15 @@
 //
-//  VVMUIPickerDataSourceObserver.m
+//  VVMUIPickerReverseObserver.m
 //  VVMBinding
 //
 //  Created by Alexander Ivlev on 11/05/16.
 //  Copyright © 2016 Alexander Ivlev. All rights reserved.
 //
 
-#import "VVMUIPickerDataSourceObserver.h"
+#import "VVMUIPickerReverseObserver.h"
 #import "VVMLogger.h"
 
-@interface VVMUIPickerDataSourceObserver () <UIPickerViewDataSource>
+@interface VVMUIPickerReverseObserver () <UIPickerViewDataSource>
 
 @property (nonatomic, weak) UIPickerView* picker;
 
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation VVMUIPickerDataSourceObserver
+@implementation VVMUIPickerReverseObserver
 
 - (id)initByBind:(VVMObserverBind*)bind UsePicker:(UIPickerView*)picker {
     VVMLogAssert(nil != bind && nil != picker);
@@ -59,23 +59,23 @@
     return testArray.count > 1;
 }
 
-- (void)update:(id)newValue {
-    if (![self.bind observerCheck:newValue]) {
+- (void)setValue:(NSArray*)newValue {
+    __strong typeof(self.picker) picker = self.picker;
+    if (nil == picker) {
         return;
     }
     
-    [self.bind observerTransformation:newValue callback:^(id newValue) {
-        if (![newValue isKindOfClass:[NSArray class]]) {
-            VVMLogError(@"Setup NSArray for UIPicker data.");
-            return;
-        }
-        
-        VVMLogDebug(@"Update UIPicker data to:%@", newValue);
-        
-        self.isComponents = [self arrayIsContaintsSubArray:newValue];
-        self.data = newValue;
-        [self.picker reloadAllComponents];
-    }];
+    if (![newValue isKindOfClass:[NSArray class]]) {
+        VVMLogError(@"VVM UIPicker data can't updated, because incorrect type.");
+        [self.bind observerNotify:NO withNewValue:newValue];
+        return;
+    }
+    
+    self.isComponents = [self arrayIsContaintsSubArray:newValue];
+    self.data = newValue;
+    [picker reloadAllComponents];
+    
+    [self.bind observerNotify:YES withNewValue:newValue];
 }
 
 @end

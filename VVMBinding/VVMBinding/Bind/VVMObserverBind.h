@@ -21,5 +21,6 @@ typedef void (^VVMObserverBindTransformationCallback)(id newValue);
 - (BOOL)observerCheck:(id)newValue;
 - (void)observerTransformation:(id)newValue callback:(VVMObserverBindTransformationCallback)callback;
 - (void)observerUpdate:(id)newValue;
+- (void)observerNotify:(BOOL)success withNewValue:(id)newValue;
 
 @end

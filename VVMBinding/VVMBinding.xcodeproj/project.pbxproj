@@ -14,6 +14,7 @@
 		A546739F1CED82CF00B90192 /* VVMBind.m in Sources */ = {isa = PBXBuildFile; fileRef = A546739A1CED82CF00B90192 /* VVMBind.m */; };
 		A54673A01CED82CF00B90192 /* VVMBindPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A546739C1CED82CF00B90192 /* VVMBindPath.m */; };
 		A54673A11CED82CF00B90192 /* VVMObserverBind.m in Sources */ = {isa = PBXBuildFile; fileRef = A546739E1CED82CF00B90192 /* VVMObserverBind.m */; };
+		A54673A41CED870300B90192 /* VVMUISegmentedControlReverseObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A54673A31CED870300B90192 /* VVMUISegmentedControlReverseObserver.m */; };
 		A5B865EA1CEC4DDC0038DD11 /* VVMTransformation.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B865E91CEC4DDC0038DD11 /* VVMTransformation.m */; };
 		A5B865ED1CEC50980038DD11 /* IVVMBind.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5B865EC1CEC505B0038DD11 /* IVVMBind.h */; };
 		A5B865EE1CEC509C0038DD11 /* VVMTransformation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5B865EB1CEC50520038DD11 /* VVMTransformation.h */; };
@@ -24,7 +25,7 @@
 		A5FF95071CE201A700A23401 /* VVMUISwitchObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF95041CE201A700A23401 /* VVMUISwitchObserver.m */; };
 		A5FF95081CE201A700A23401 /* VVMUITextFieldObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF95061CE201A700A23401 /* VVMUITextFieldObserver.m */; };
 		A5FF950B1CE202BB00A23401 /* VVMUISliderObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF950A1CE202BB00A23401 /* VVMUISliderObserver.m */; };
-		A5FF95131CE2F2F700A23401 /* VVMUIPickerDataSourceObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF95121CE2F2F700A23401 /* VVMUIPickerDataSourceObserver.m */; };
+		A5FF95131CE2F2F700A23401 /* VVMUIPickerReverseObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FF95121CE2F2F700A23401 /* VVMUIPickerReverseObserver.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +58,8 @@
 		A546739C1CED82CF00B90192 /* VVMBindPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMBindPath.m; sourceTree = "<group>"; };
 		A546739D1CED82CF00B90192 /* VVMObserverBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMObserverBind.h; sourceTree = "<group>"; };
 		A546739E1CED82CF00B90192 /* VVMObserverBind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMObserverBind.m; sourceTree = "<group>"; };
+		A54673A21CED870300B90192 /* VVMUISegmentedControlReverseObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMUISegmentedControlReverseObserver.h; sourceTree = "<group>"; };
+		A54673A31CED870300B90192 /* VVMUISegmentedControlReverseObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMUISegmentedControlReverseObserver.m; sourceTree = "<group>"; };
 		A5B865E91CEC4DDC0038DD11 /* VVMTransformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMTransformation.m; sourceTree = "<group>"; };
 		A5B865EB1CEC50520038DD11 /* VVMTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVMTransformation.h; path = Public/VVMTransformation.h; sourceTree = "<group>"; };
 		A5B865EC1CEC505B0038DD11 /* IVVMBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVVMBind.h; path = Public/IVVMBind.h; sourceTree = "<group>"; };
@@ -74,8 +77,8 @@
 		A5FF95091CE202BB00A23401 /* VVMUISliderObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMUISliderObserver.h; sourceTree = "<group>"; };
 		A5FF950A1CE202BB00A23401 /* VVMUISliderObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMUISliderObserver.m; sourceTree = "<group>"; };
 		A5FF95101CE2085500A23401 /* VVMLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VVMLogger.h; sourceTree = "<group>"; };
-		A5FF95111CE2F2F700A23401 /* VVMUIPickerDataSourceObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMUIPickerDataSourceObserver.h; sourceTree = "<group>"; };
-		A5FF95121CE2F2F700A23401 /* VVMUIPickerDataSourceObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMUIPickerDataSourceObserver.m; sourceTree = "<group>"; };
+		A5FF95111CE2F2F700A23401 /* VVMUIPickerReverseObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVMUIPickerReverseObserver.h; sourceTree = "<group>"; };
+		A5FF95121CE2F2F700A23401 /* VVMUIPickerReverseObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVMUIPickerReverseObserver.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,10 +171,12 @@
 				A5FF950A1CE202BB00A23401 /* VVMUISliderObserver.m */,
 				A532A8991CE308B30099B531 /* VVMUISliderReverseObserver.h */,
 				A532A89A1CE308B30099B531 /* VVMUISliderReverseObserver.m */,
-				A5FF95111CE2F2F700A23401 /* VVMUIPickerDataSourceObserver.h */,
-				A5FF95121CE2F2F700A23401 /* VVMUIPickerDataSourceObserver.m */,
 				A54673941CED785F00B90192 /* VVMUIImageViewReverseObserver.h */,
 				A54673951CED785F00B90192 /* VVMUIImageViewReverseObserver.m */,
+				A5FF95111CE2F2F700A23401 /* VVMUIPickerReverseObserver.h */,
+				A5FF95121CE2F2F700A23401 /* VVMUIPickerReverseObserver.m */,
+				A54673A21CED870300B90192 /* VVMUISegmentedControlReverseObserver.h */,
+				A54673A31CED870300B90192 /* VVMUISegmentedControlReverseObserver.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -246,9 +251,10 @@
 				A54673A11CED82CF00B90192 /* VVMObserverBind.m in Sources */,
 				A5FF94EA1CE1D02400A23401 /* VVMKVObserver.m in Sources */,
 				A54673961CED785F00B90192 /* VVMUIImageViewReverseObserver.m in Sources */,
-				A5FF95131CE2F2F700A23401 /* VVMUIPickerDataSourceObserver.m in Sources */,
+				A5FF95131CE2F2F700A23401 /* VVMUIPickerReverseObserver.m in Sources */,
 				A5FF94ED1CE1D05C00A23401 /* VVMObserverFabric.m in Sources */,
 				A5FF94A51CDC5D4F00A23401 /* VVMBinding.m in Sources */,
+				A54673A41CED870300B90192 /* VVMUISegmentedControlReverseObserver.m in Sources */,
 				A532A8981CE304020099B531 /* VVMUISwitchReverseObserver.m in Sources */,
 				A532A8921CE2FBC30099B531 /* VVMObserver.m in Sources */,
 				A5B865EA1CEC4DDC0038DD11 /* VVMTransformation.m in Sources */,

@@ -25,6 +25,7 @@
 @property (assign, nonatomic) float progressValue;
 
 @property (strong, nonatomic) NSArray* pickerData;
+@property (strong, nonatomic) NSArray* segments;
 
 @property (strong, nonatomic) NSString* imageName;
 
@@ -58,6 +59,12 @@
                             @"Value4",
                             @"Value5"
                             ];
+        
+        self.segments = @[
+                          @"Segment1",
+                          @"Segment2",
+                          @"Segment3"
+                          ];
         
         self.imageName = @"Test";
         self.close = @"Close Window";
@@ -107,6 +114,15 @@
                             @"NewValue6",
                             @"NewValue7"
                             ];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.segments = @[
+                      @"Segment1",
+                      @"Segment2",
+                      @"Segment3",
+                      @"Segment4",
+                      ];
     });
 }
 

@@ -46,9 +46,13 @@
     
     if ([self.bind observerCheck:newValue]) {
         [self.bind observerTransformation:newValue callback:^(id newValue) {
-           [self.bind observerUpdate:newValue]; 
+            [self setValue:newValue];
         }];
     }
+}
+
+- (void)setValue:(id)newValue {
+    [self.bind observerUpdate:newValue];
 }
 
 @end

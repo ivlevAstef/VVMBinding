@@ -16,8 +16,9 @@
 #import "VVMUISwitchReverseObserver.h"
 #import "VVMUISliderObserver.h"
 #import "VVMUISliderReverseObserver.h"
-#import "VVMUIPickerDataSourceObserver.h"
+#import "VVMUIPickerReverseObserver.h"
 #import "VVMUIImageViewReverseObserver.h"
+#import "VVMUISegmentedControlReverseObserver.h"
 
 @implementation VVMObserverFabric
 
@@ -29,6 +30,7 @@
     observer = observer ?: [self checkCreateSliderObserverByBind:bind];
     observer = observer ?: [self checkCreatePickerObserverByBind:bind];
     observer = observer ?: [self checkCreateImageViewObserverByBind:bind];
+    observer = observer ?: [self checkCreateSegmentedObserverByBind:bind];
     
     observer = observer ?: [self createKVObserverByBind:bind];
     
@@ -104,21 +106,6 @@
     return nil;
 }
 
-//////// UIPickerView
-+ (BOOL)checkOnPickerByBindPath:(VVMBindPath*)bindPath {
-    return [bindPath vvmIsKindOfClass:[UIPickerView class] AndValue:@"dataSource"];
-}
-+ (id)checkCreatePickerObserverByBind:(VVMObserverBind*)bind {
-    if ([self checkOnPickerByBindPath:bind.callPath]) {
-        UIPickerView* picker = [bind.callPath vvmObjectKindOfClass:[UIPickerView class]];
-        VVMLogDebug(@"Create UIPickerView reverse observer for bind:%@", bind);
-        
-        return [[VVMUIPickerDataSourceObserver alloc] initByBind:bind UsePicker:picker];
-    }
-    
-    return nil;
-}
-
 //////// UIImageView
 + (BOOL)checkOnImageViewByBindPath:(VVMBindPath*)bindPath {
   return [bindPath vvmIsKindOfClass:[UIImageView class] AndValue:@"image"];
@@ -132,6 +119,36 @@
   }
   
   return nil;
+}
+
+//////// UIPickerView
++ (BOOL)checkOnPickerByBindPath:(VVMBindPath*)bindPath {
+    return [bindPath vvmIsKindOfClass:[UIPickerView class]];
+}
++ (id)checkCreatePickerObserverByBind:(VVMObserverBind*)bind {
+    if ([self checkOnPickerByBindPath:bind.callPath]) {
+        UIPickerView* picker = [bind.callPath vvmObjectKindOfClass:[UIPickerView class]];
+        VVMLogDebug(@"Create UIPickerView reverse observer for bind:%@", bind);
+        
+        return [[VVMUIPickerReverseObserver alloc] initByBind:bind UsePicker:picker];
+    }
+    
+    return nil;
+}
+
+//////// UISegmentedControl
++ (BOOL)checkOnSegmentedByBindPath:(VVMBindPath*)bindPath {
+    return [bindPath vvmIsKindOfClass:[UISegmentedControl class]];
+}
++ (id)checkCreateSegmentedObserverByBind:(VVMObserverBind*)bind {
+    if ([self checkOnSegmentedByBindPath:bind.callPath]) {
+        UISegmentedControl* segmented = [bind.callPath vvmObjectKindOfClass:[UISegmentedControl class]];
+        VVMLogDebug(@"Create UIPickerView reverse observer for bind:%@", bind);
+        
+        return [[VVMUISegmentedControlReverseObserver alloc] initByBind:bind UseSegmentedControl:segmented];
+    }
+    
+    return nil;
 }
 
 //////// Key Value Observer

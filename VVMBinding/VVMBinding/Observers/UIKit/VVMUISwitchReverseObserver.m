@@ -36,15 +36,22 @@
     self.isInitial = FALSE;
 }
 
-- (void)update:(id)newValue {
+- (void)setValue:(NSNumber*)newValue {
     __strong typeof(self.uiSwitch) uiSwitch = self.uiSwitch;
     if (nil == uiSwitch) {
         return;
     }    
     
+    if (![newValue isKindOfClass:[NSNumber class]]) {
+        VVMLogError(@"VVM UISwitch.on can't updated, because incorrect type.");
+        [self.bind observerNotify:NO withNewValue:newValue];
+        return;
+    }
+    
     BOOL animated = !self.isInitial;
     
     [self.uiSwitch setOn:[newValue boolValue] animated:animated];
+    [self.bind observerNotify:YES withNewValue:newValue];
 }
 
 @end

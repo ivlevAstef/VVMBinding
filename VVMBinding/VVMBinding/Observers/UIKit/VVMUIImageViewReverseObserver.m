@@ -19,36 +19,34 @@
 @implementation VVMUIImageViewReverseObserver
 
 - (id)initByBind:(VVMObserverBind*)bind UseImageView:(UIImageView*)imageView {
-  VVMLogAssert(nil != bind && nil != imageView);
-  
-  self = [super initByBind:bind];
-  if (self) {
-    self.imageView = imageView;
-  }
-  
-  return self;
+    VVMLogAssert(nil != bind && nil != imageView);
+
+    self = [super initByBind:bind];
+    if (self) {
+        self.imageView = imageView;
+    }
+
+    return self;
 }
 
-- (void)update:(id)newValue {
-  if ([newValue isKindOfClass:[NSString class]]) {
-    newValue = [VVMTransformation NSStringToUIImage](newValue);
-  }
-  
-  if ([newValue isKindOfClass:[UIImage class]] || nil == newValue) {
-    [self setImage:newValue];
-  } else {
-    VVMLogError(@"VVM UIImageView.image can't updated, because incorrect type.");
-  }
-  
-}
+- (void)setValue:(id)newValue {
+    __strong typeof(self.imageView) imageView = self.imageView;
+    if (nil == imageView) {
+        return;
+    }
+    
+    if ([newValue isKindOfClass:[NSString class]]) {
+        newValue = [VVMTransformation NSStringToUIImage](newValue);
+    }
 
-- (void)setImage:(UIImage*)image {
-  __strong typeof(self.imageView) imageView = self.imageView;
-  if (nil == imageView) {
-    return;
-  }
+    if ([newValue isKindOfClass:[UIImage class]] || nil == newValue) {
+        [imageView setImage:newValue];
+        [self.bind observerNotify:YES withNewValue:newValue];
+    } else {
+        VVMLogError(@"VVM UIImageView.image can't updated, because incorrect type.");
+        [self.bind observerNotify:NO withNewValue:newValue];
+    }
   
-  [imageView setImage:image];
 }
 
 @end

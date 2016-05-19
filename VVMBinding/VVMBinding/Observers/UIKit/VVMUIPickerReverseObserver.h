@@ -1,5 +1,5 @@
 //
-//  VVMUIPickerDataSourceObserver.h
+//  VVMUIPickerReverseObserver.h
 //  VVMBinding
 //
 //  Created by Alexander Ivlev on 11/05/16.
@@ -10,7 +10,7 @@
 #import "VVMKVObserver.h"
 #import <UIKit/UIKit.h>
 
-@interface VVMUIPickerDataSourceObserver : VVMKVObserver
+@interface VVMUIPickerReverseObserver : VVMKVObserver
 
 - (id)initByBind:(VVMObserverBind*)bind UsePicker:(UIPickerView*)picker;
 

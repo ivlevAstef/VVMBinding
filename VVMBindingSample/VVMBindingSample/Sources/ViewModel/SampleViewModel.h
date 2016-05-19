@@ -24,6 +24,7 @@
 @property (readonly, nonatomic) float progressValue;
 
 @property (readonly, nonatomic) NSArray* pickerData;
+@property (readonly, nonatomic) NSArray* segments;
 
 @property (readonly, nonatomic) NSString* imageName;
 

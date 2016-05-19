@@ -11,14 +11,14 @@
 
 @interface SampleViewController () <UIPickerViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel* sampleLabel;//OK
-@property (weak, nonatomic) IBOutlet UITextField* sampleTextField;//OK
-@property (weak, nonatomic) IBOutlet UISlider* sampleSlider;//OK
-@property (weak, nonatomic) IBOutlet UISwitch* sampleSwitch;//OK
-@property (weak, nonatomic) IBOutlet UIPickerView* samplePickerView;//Only get data from NSArray. Support is open question.
+@property (weak, nonatomic) IBOutlet UILabel* sampleLabel;//OK. NSString
+@property (weak, nonatomic) IBOutlet UITextField* sampleTextField;//OK. NSString
+@property (weak, nonatomic) IBOutlet UISlider* sampleSlider;//OK. float, int and NSNumber
+@property (weak, nonatomic) IBOutlet UISwitch* sampleSwitch;//OK. BOOL and NSNumber
+@property (weak, nonatomic) IBOutlet UIPickerView* samplePickerView;//OK. Only get data from NSArray.
 @property (weak, nonatomic) IBOutlet UIImageView* sampleImageView;//OK. Support UIImage and NSString.
-@property (weak, nonatomic) IBOutlet UIProgressView* sampleProgress;//OK
-@property (weak, nonatomic) IBOutlet UISegmentedControl* sampleSegments;//No
+@property (weak, nonatomic) IBOutlet UIProgressView* sampleProgress;//OK. float and NSNumber
+@property (weak, nonatomic) IBOutlet UISegmentedControl* sampleSegments;//OK. Only get data from NSArray.
 @property (weak, nonatomic) IBOutlet UIButton* sampleButton;//No
 @property (weak, nonatomic) IBOutlet UIStepper* sampleStepper;//No
 @property (weak, nonatomic) IBOutlet UISearchBar* sampleSearchBar;//No
@@ -77,8 +77,10 @@
     
     VVMBindReadWrite(self, sampleProgress.progress, viewModel, progressValue);
     
+    VVMBindRead(self, sampleSegments, viewModel, segments);
+    
     self.samplePickerView.delegate = self;
-    VVMBindRead(self, samplePickerView.dataSource, viewModel, pickerData);
+    VVMBindRead(self, samplePickerView, viewModel, pickerData);
 }
 
 - (nullable NSString *)pickerView:(UIPickerView*)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {

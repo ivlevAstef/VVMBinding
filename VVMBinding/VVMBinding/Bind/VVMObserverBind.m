@@ -70,7 +70,6 @@
         return;
     }
     
-    VVMBindMethodUpdated userMethod = self.updatedBlock;
     BOOL successful = TRUE;
     
     @try {
@@ -79,6 +78,11 @@
         successful = FALSE;
     }
     
+    [self observerNotify:successful withNewValue:newValue];
+}
+
+- (void)observerNotify:(BOOL)successful withNewValue:(id)newValue {
+    VVMBindMethodUpdated userMethod = self.updatedBlock;
     if (nil != userMethod) {
         VVMLogDebug(@"Call user method 'update' for:%@", self);
         userMethod(successful, newValue);
